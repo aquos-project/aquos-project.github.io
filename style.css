@@ -1,0 +1,183 @@
+/* ================= VARIABLES & RESET ================= */
+:root {
+    --primary: #0077b6;
+    --secondary: #00b4d8;
+    --light: #f8f9fa;
+    --dark: #333333;
+    --white: #ffffff;
+    --card-shadow: 0 4px 15px rgba(0,0,0,0.05);
+}
+
+* { 
+    margin: 0; 
+    padding: 0; 
+    box-sizing: border-box; 
+    font-family: 'Segoe UI', Tahoma, Geneva, sans-serif; 
+    scroll-behavior: smooth; 
+}
+
+body { 
+    background-color: var(--light); 
+    color: var(--dark); 
+    line-height: 1.6; 
+}
+
+/* ================= GESTION DES LANGUES ================= */
+.en { display: none; }
+body.lang-en .fr { display: none; }
+body.lang-en .en { display: block; }
+body.lang-en span.en { display: inline; }
+
+/* ================= NAVIGATION ================= */
+header { 
+    background: var(--primary); 
+    position: fixed; 
+    width: 100%; 
+    top: 0; 
+    z-index: 1000; 
+}
+
+nav { 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    padding: 15px 5%; 
+    max-width: 1200px; 
+    margin: auto; 
+}
+
+.logo { 
+    color: var(--white); 
+    font-size: 1.8rem; 
+    font-weight: bold; 
+    text-decoration: none; 
+}
+
+.nav-links { 
+    display: flex; 
+    gap: 20px; 
+    list-style: none; 
+    align-items: center; 
+}
+
+.nav-links a { 
+    color: var(--white); 
+    text-decoration: none; 
+    font-weight: 500; 
+}
+
+.lang-btn {
+    background: rgba(255,255,255,0.2); 
+    border: 2px solid white; 
+    color: white;
+    padding: 5px 15px; 
+    border-radius: 20px; 
+    cursor: pointer; 
+    font-weight: bold; 
+    transition: 0.3s;
+}
+
+.lang-btn:hover { 
+    background: white; 
+    color: var(--primary); 
+}
+
+/* ================= SECTIONS GLOBALES ================= */
+section { 
+    padding: 100px 5% 50px 5%; 
+    max-width: 1200px; 
+    margin: auto; 
+}
+
+h2 { 
+    color: var(--primary); 
+    font-size: 2.2rem; 
+    text-align: center; 
+    margin-bottom: 40px; 
+}
+
+.grid { 
+    display: grid; 
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
+    gap: 30px; 
+}
+
+.card { 
+    background: var(--white); 
+    padding: 30px; 
+    border-radius: 12px; 
+    box-shadow: var(--card-shadow); 
+}
+
+/* ================= ACCUEIL ================= */
+#accueil { 
+    text-align: center; 
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; 
+    justify-content: center; 
+    min-height: 90vh; 
+}
+
+h1 { 
+    font-size: 3.5rem; 
+    color: var(--primary); 
+    margin-bottom: 20px; 
+}
+
+.subtitle { 
+    font-size: 1.3rem; 
+    color: #555; 
+    max-width: 800px; 
+    margin-bottom: 30px; 
+}
+
+.highlight-box { 
+    background: linear-gradient(135deg, var(--primary), var(--secondary)); 
+    color: white; 
+    padding: 20px 40px; 
+    border-radius: 15px; 
+    font-size: 1.8rem; 
+    font-weight: bold; 
+}
+
+/* ================= COMMENT ÇA MARCHE ================= */
+.step-box { 
+    background: white; 
+    padding: 20px; 
+    border-left: 5px solid var(--secondary); 
+    margin-bottom: 15px; 
+    border-radius: 0 10px 10px 0; 
+    box-shadow: var(--card-shadow); 
+}
+
+.step-box h3 { 
+    color: var(--primary); 
+    margin-bottom: 10px; 
+}
+
+/* ================= ÉQUIPE & CONTACT ================= */
+.team-member { 
+    text-align: center; 
+}
+
+.team-member h3 { 
+    color: var(--secondary); 
+}
+
+.contact-box { 
+    background: var(--white); 
+    padding: 40px; 
+    text-align: center; 
+    border-radius: 12px; 
+}
+
+.btn { 
+    display: inline-block; 
+    background: var(--primary); 
+    color: white; 
+    padding: 10px 25px; 
+    text-decoration: none; 
+    border-radius: 25px; 
+    margin-top: 15px; 
+}

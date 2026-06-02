@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AQUOS - La Douche Intelligente</title>
+    
+    <!-- LIAISON AVEC LE FICHIER CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- HEADER & NAV -->
+    <header>
+        <nav>
+            <a href="#accueil" class="logo">💧 AQUOS</a>
+            <ul class="nav-links">
+                <li><a href="#fonctionnement"><span class="fr">Fonctionnement</span><span class="en">How it works</span></a></li>
+                <li><a href="#tech"><span class="fr">Technologie</span><span class="en">Tech</span></a></li>
+                <li><a href="#equipe"><span class="fr">L'Équipe</span><span class="en">Team</span></a></li>
+                <li><a href="#dashboard"><span class="fr">En Direct</span><span class="en">Live</span></a></li>
+                <li><button class="lang-btn" onclick="toggleLanguage()" id="btn-lang">FR / EN</button></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- 1. ACCUEIL -->
+    <section id="accueil">
+        <h1>
+            <span class="fr">AQUOS — La douche qui recycle l’eau intelligemment</span>
+            <span class="en">AQUOS — The intelligently recycling shower</span>
+        </h1>
+        <p class="subtitle">
+            <span class="fr">Aquos est un système innovant qui permet de réutiliser l’eau de la douche en temps réel, tout en garantissant une eau propre, filtrée et désinfectée.</span>
+            <span class="en">Aquos is an innovative system that allows you to reuse shower water in real-time, while guaranteeing clean, filtered, and disinfected water.</span>
+        </p>
+        <div class="highlight-box">
+            <span class="fr">Objectif : Réduire la consommation d’eau jusqu’à 70 %</span>
+            <span class="en">Goal: Reduce water consumption by up to 70%</span>
+        </div>
+    </section>
+
+    <!-- 2. COMMENT ÇA MARCHE -->
+    <section id="fonctionnement">
+        <h2>
+            <span class="fr">Comment ça marche ?</span>
+            <span class="en">How does it work?</span>
+        </h2>
+        <div style="max-width: 800px; margin: auto;">
+            <div class="step-box">
+                <h3><span class="fr">1. L’eau est récupérée</span><span class="en">1. Water is collected</span></h3>
+                <p><span class="fr">L’eau qui s’écoule dans la douche est collectée dans un petit réservoir.</span><span class="en">Water flowing from the shower is collected in a small reservoir.</span></p>
+            </div>
+            <div class="step-box">
+                <h3><span class="fr">2. Elle est filtrée</span><span class="en">2. It is filtered</span></h3>
+                <p><span class="fr">Elle passe dans plusieurs filtres qui retirent les cheveux, les impuretés et les particules fines.</span><span class="en">It passes through several filters that remove hair, impurities, and fine particles.</span></p>
+            </div>
+            <div class="step-box">
+                <h3><span class="fr">3. Elle est désinfectée</span><span class="en">3. It is disinfected</span></h3>
+                <p><span class="fr">Une puissante lumière UV-C élimine les bactéries et les micro-organismes.</span><span class="en">A powerful UV-C light eliminates bacteria and microorganisms.</span></p>
+            </div>
+            <div class="step-box">
+                <h3><span class="fr">4. Elle est renvoyée propre</span><span class="en">4. It is sent back clean</span></h3>
+                <p><span class="fr">Une pompe renvoie l’eau filtrée vers la pomme de douche pour être réutilisée immédiatement.</span><span class="en">A pump sends the filtered water back to the showerhead to be reused immediately.</span></p>
+            </div>
+            <div class="step-box" style="border-color: var(--primary);">
+                <h3><span class="fr">5. Tout est automatique</span><span class="en">5. Everything is automatic</span></h3>
+                <p><span class="fr">Une carte électronique surveille l'eau en permanence. L’utilisateur ne fait… rien.</span><span class="en">An electronic board monitors the water constantly. The user does... nothing.</span></p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. TECHNOLOGIE -->
+    <section id="tech">
+        <h2>
+            <span class="fr">La Technologie</span>
+            <span class="en">The Technology</span>
+        </h2>
+        <div class="grid">
+            <div class="card">
+                <h3 style="color: var(--primary); margin-bottom: 15px;">🧠 <span class="fr">Un cœur intelligent</span><span class="en">A smart brain</span></h3>
+                <p><span class="fr">L’ESP32 Nano est un petit module électronique qui permet à Aquos de lire les capteurs, prendre des décisions en temps réel et optimiser l'eau. C'est le cerveau du système.</span><span class="en">The ESP32 Nano is a small electronic module that allows Aquos to read sensors, make real-time decisions, and optimize water. It's the brain of the system.</span></p>
+            </div>
+            <div class="card">
+                <h3 style="color: var(--primary); margin-bottom: 15px;">👁️ <span class="fr">Les Capteurs</span><span class="en">The Sensors</span></h3>
+                <ul style="margin-left: 20px;">
+                    <li><span class="fr"><b>Niveau :</b> Vérifie l'eau disponible.</span><span class="en"><b>Level:</b> Checks available water.</span></li>
+                    <li><span class="fr"><b>Turbidité :</b> Mesure si l'eau est claire.</span><span class="en"><b>Turbidity:</b> Measures if water is clear.</span></li>
+                    <li><span class="fr"><b>TDS :</b> Mesure la pureté chimique (savon).</span><span class="en"><b>TDS:</b> Measures chemical purity (soap).</span></li>
+                    <li><span class="fr"><b>Température :</b> Assure votre confort.</span><span class="en"><b>Temperature:</b> Ensures your comfort.</span></li>
+                </ul>
+            </div>
+            <div class="card">
+                <h3 style="color: var(--primary); margin-bottom: 15px;">⚙️ <span class="fr">Les Actionneurs</span><span class="en">The Actuators</span></h3>
+                <ul style="margin-left: 20px;">
+                    <li><span class="fr"><b>Pompe :</b> Renvoie l’eau filtrée.</span><span class="en"><b>Pump:</b> Returns filtered water.</span></li>
+                    <li><span class="fr"><b>Électrovannes :</b> Dirigent l'eau.</span><span class="en"><b>Valves:</b> Direct the water.</span></li>
+                    <li><span class="fr"><b>Lampe UV-C :</b> Désinfecte l’eau.</span><span class="en"><b>UV-C Lamp:</b> Disinfects the water.</span></li>
+                    <li><span class="fr"><b>Résistance :</b> Maintient la chaleur.</span><span class="en"><b>Heater:</b> Maintains the heat.</span></li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. POURQUOI AQUOS -->
+    <section id="pourquoi" style="background: white;">
+        <h2>
+            <span class="fr">Pourquoi choisir Aquos ?</span>
+            <span class="en">Why choose Aquos?</span>
+        </h2>
+        <div class="grid" style="text-align: center;">
+            <div>
+                <h1 style="font-size: 3rem;">🌱</h1>
+                <h3><span class="fr">Écologique</span><span class="en">Ecological</span></h3>
+                <p><span class="fr">Jusqu’à 70 % d’eau économisée à chaque douche.</span><span class="en">Up to 70% water saved per shower.</span></p>
+            </div>
+            <div>
+                <h1 style="font-size: 3rem;">💰</h1>
+                <h3><span class="fr">Économique</span><span class="en">Economical</span></h3>
+                <p><span class="fr">Moins d’eau consommée = facture réduite.</span><span class="en">Less water consumed = lower bills.</span></p>
+            </div>
+            <div>
+                <h1 style="font-size: 3rem;">🛁</h1>
+                <h3><span class="fr">Confortable</span><span class="en">Comfortable</span></h3>
+                <p><span class="fr">Aucune différence… sauf sur la consommation.</span><span class="en">No difference... except in consumption.</span></p>
+            </div>
+            <div>
+                <h1 style="font-size: 3rem;">🛡️</h1>
+                <h3><span class="fr">Sécurisé</span><span class="en">Secure</span></h3>
+                <p><span class="fr">Vidange auto si l'eau est sale ou niveau bas.</span><span class="en">Auto-drain if water is dirty or level is low.</span></p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. ÉQUIPE & OBJECTIFS -->
+    <section id="equipe">
+        <h2>
+            <span class="fr">Le Projet & L'Équipe</span>
+            <span class="en">Project & Team</span>
+        </h2>
+        <div class="grid" style="margin-bottom: 50px;">
+            <!-- Remplace "Prénom" par vos vrais prénoms -->
+            <div class="card team-member">
+                <h3>Prénom 1</h3>
+                <p><b><span class="fr">Électronique</span><span class="en">Electronics</span></b></p>
+                <p><span class="fr">Conception du cerveau ESP32 et sécurité du système.</span><span class="en">Design of the ESP32 brain and system security.</span></p>
+            </div>
+            <div class="card team-member">
+                <h3>Prénom 2</h3>
+                <p><b><span class="fr">Filtration</span><span class="en">Filtration</span></b></p>
+                <p><span class="fr">Gestion du traitement de l'eau et de l'UV-C.</span><span class="en">Management of water treatment and UV-C.</span></p>
+            </div>
+            <div class="card team-member">
+                <h3>Prénom 3</h3>
+                <p><b><span class="fr">Logiciel</span><span class="en">Software</span></b></p>
+                <p><span class="fr">Programmation des capteurs et de l'interface.</span><span class="en">Programming of sensors and interface.</span></p>
+            </div>
+        </div>
+
+        <div class="card" style="text-align: center;">
+            <h3 style="color: var(--primary); margin-bottom: 15px;">🎯 <span class="fr">Nos Objectifs</span><span class="en">Our Objectives</span></h3>
+            <p><span class="fr">1. Réduire la consommation domestique</span><span class="en">1. Reduce domestic consumption</span></p>
+            <p><span class="fr">2. Concevoir un prototype 100% fonctionnel</span><span class="en">2. Design a 100% functional prototype</span></p>
+            <p><span class="fr">3. Assurer une sécurité sanitaire absolue</span><span class="en">3. Ensure absolute sanitary safety</span></p>
+            <p><span class="fr">4. Sensibiliser à l’économie d’eau</span><span class="en">4. Raise awareness about water saving</span></p>
+        </div>
+    </section>
+
+    <!-- 6. CONTACT -->
+    <section id="contact" style="background: white;">
+        <div class="contact-box">
+            <h2>Contact</h2>
+            <p><span class="fr">Une question sur notre projet étudiant ?</span><span class="en">A question about our student project?</span></p>
+            <p style="margin-top: 10px; font-weight: bold;">📧 contact.aquos@email.com</p>
+            <a href="https://github.com/ton-github" class="btn" target="_blank">
+                <span class="fr">Voir le code sur GitHub</span><span class="en">View code on GitHub</span>
+            </a>
+        </div>
+    </section>
+
+    <!-- 7. DASHBOARD (Iframe Placeholder) -->
+    <section id="dashboard">
+        <h2>
+            <span class="fr">Tableau de Bord en Direct</span>
+            <span class="en">Live IoT Dashboard</span>
+        </h2>
+        <div style="width: 100%; height: 400px; background: #e9ecef; border: 2px dashed #ccc; border-radius: 10px; display: flex; align-items: center; justify-content: center; color: #666;">
+            [ <span class="fr">Espace réservé pour la carte Adafruit IO</span><span class="en">Placeholder for Adafruit IO dashboard</span> ]
+        </div>
+    </section>
+
+    <!-- SCRIPT POUR LE BOUTON BILINGUE -->
+    <script>
+        function toggleLanguage() {
+            // Ajoute ou retire la classe 'lang-en' sur la balise <body>
+            document.body.classList.toggle('lang-en');
+            
+            // Met à jour le texte du bouton
+            const btn = document.getElementById('btn-lang');
+            if (document.body.classList.contains('lang-en')) {
+                btn.innerText = "EN / FR";
+            } else {
+                btn.innerText = "FR / EN";
+            }
+        }
+    </script>
+</body>
+</html>
