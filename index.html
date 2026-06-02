@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AQUOSSS - La Douche Intelligente</title>
+    <title>AQUOS - La Douche Intelligente</title>
     
     <!-- LIAISON AVEC LE FICHIER CSS -->
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style_v1.css">a
 </head>
 <body>
 
@@ -139,7 +139,6 @@
             <span class="en">Project & Team</span>
         </h2>
         <div class="grid" style="margin-bottom: 50px;">
-            <!-- Remplace "Prénom" par vos vrais prénoms -->
             <div class="card team-member">
                 <h3>Prénom 1</h3>
                 <p><b><span class="fr">Électronique</span><span class="en">Electronics</span></b></p>
@@ -152,6 +151,21 @@
             </div>
             <div class="card team-member">
                 <h3>Prénom 3</h3>
+                <p><b><span class="fr">Logiciel</span><span class="en">Software</span></b></p>
+                <p><span class="fr">Programmation des capteurs et de l'interface.</span><span class="en">Programming of sensors and interface.</span></p>
+            </div>
+            <div class="card team-member">
+                <h3>Prénom 4</h3>
+                <p><b><span class="fr">Électronique</span><span class="en">Electronics</span></b></p>
+                <p><span class="fr">Conception du cerveau ESP32 et sécurité du système.</span><span class="en">Design of the ESP32 brain and system security.</span></p>
+            </div>
+            <div class="card team-member">
+                <h3>Prénom 5</h3>
+                <p><b><span class="fr">Filtration</span><span class="en">Filtration</span></b></p>
+                <p><span class="fr">Gestion du traitement de l'eau et de l'UV-C.</span><span class="en">Management of water treatment and UV-C.</span></p>
+            </div>
+            <div class="card team-member">
+                <h3>Prénom 6</h3>
                 <p><b><span class="fr">Logiciel</span><span class="en">Software</span></b></p>
                 <p><span class="fr">Programmation des capteurs et de l'interface.</span><span class="en">Programming of sensors and interface.</span></p>
             </div>
@@ -178,24 +192,83 @@
         </div>
     </section>
 
-    <!-- 7. DASHBOARD (Iframe Placeholder) -->
+    <!-- 7. DASHBOARD (Cartes + Iframe) -->
     <section id="dashboard">
         <h2>
             <span class="fr">Tableau de Bord en Direct</span>
             <span class="en">Live IoT Dashboard</span>
         </h2>
-        <div style="width: 100%; height: 400px; background: #e9ecef; border: 2px dashed #ccc; border-radius: 10px; display: flex; align-items: center; justify-content: center; color: #666;">
-            [ <span class="fr">Espace réservé pour la carte Adafruit IO</span><span class="en">Placeholder for Adafruit IO dashboard</span> ]
+        <p style="text-align: center; margin-bottom: 30px; color: #666;">
+            <span class="fr">Interface connectée à la cabine de douche AQUOS.</span>
+            <span class="en">Interface connected to the AQUOS shower cabin.</span>
+        </p>
+
+        <!-- Les 6 Cartes du Dashboard -->
+        <div class="dashboard-grid">
+            <!-- Mode du Système -->
+            <div class="dash-card">
+                <div class="dash-title"><span class="fr">Mode Actuel</span><span class="en">Current Mode</span></div>
+                <div class="dash-value" id="val-mode">AQUOS ♻️</div>
+                <div class="dash-status status-ok" id="stat-mode">
+                    <span class="fr">Recyclage actif</span><span class="en">Active recycling</span>
+                </div>
+            </div>
+
+            <!-- Température -->
+            <div class="dash-card">
+                <div class="dash-title"><span class="fr">Température (DS18B20)</span><span class="en">Temperature</span></div>
+                <div class="dash-value" id="val-temp">37.5 °C</div>
+                <div class="dash-status status-ok"><span class="fr">Idéale</span><span class="en">Ideal</span></div>
+            </div>
+
+            <!-- Turbidité -->
+            <div class="dash-card">
+                <div class="dash-title"><span class="fr">Turbidité (Clarté)</span><span class="en">Turbidity (Clarity)</span></div>
+                <div class="dash-value" id="val-turb">15 NTU</div>
+                <div class="dash-status status-ok" id="stat-turb">
+                    <span class="fr">Eau Claire</span><span class="en">Clear Water</span>
+                </div>
+            </div>
+
+            <!-- TDS -->
+            <div class="dash-card">
+                <div class="dash-title"><span class="fr">TDS (Pureté)</span><span class="en">TDS (Purity)</span></div>
+                <div class="dash-value" id="val-tds">120 ppm</div>
+                <div class="dash-status status-ok" id="stat-tds">
+                    <span class="fr">Sans Savon</span><span class="en">No Soap</span>
+                </div>
+            </div>
+
+            <!-- Pompe -->
+            <div class="dash-card">
+                <div class="dash-title"><span class="fr">Puissance Pompe</span><span class="en">Pump Power</span></div>
+                <div class="dash-value" id="val-pump">80 %</div>
+                <div class="dash-status status-neutral">
+                    <span class="fr">En marche</span><span class="en">Running</span>
+                </div>
+            </div>
+
+            <!-- Lampe UV -->
+            <div class="dash-card">
+                <div class="dash-title"><span class="fr">Stérilisation UV</span><span class="en">UV Sterilization</span></div>
+                <div class="dash-value" id="val-uv">ON</div>
+                <div class="dash-status status-ok">
+                    <span class="fr">Traitement actif</span><span class="en">Active</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Espace pour Adafruit IO -->
+        <div class="iframe-placeholder">
+            [ <span class="fr">Espace réservé pour l'historique Adafruit IO</span><span class="en">Placeholder for Adafruit IO history</span> ]
         </div>
     </section>
 
-    <!-- SCRIPT POUR LE BOUTON BILINGUE -->
+    <!-- SCRIPT GESTION LANGUE & SIMULATION DASHBOARD -->
     <script>
+        // Fonction pour changer la langue
         function toggleLanguage() {
-            // Ajoute ou retire la classe 'lang-en' sur la balise <body>
             document.body.classList.toggle('lang-en');
-            
-            // Met à jour le texte du bouton
             const btn = document.getElementById('btn-lang');
             if (document.body.classList.contains('lang-en')) {
                 btn.innerText = "EN / FR";
@@ -203,6 +276,58 @@
                 btn.innerText = "FR / EN";
             }
         }
+
+        // --- SIMULATION DU DASHBOARD ---
+        function randomFloat(min, max, decimals = 1) {
+            return (Math.random() * (max - min) + min).toFixed(decimals);
+        }
+
+        setInterval(() => {
+            // Variation Température & Pompe
+            document.getElementById('val-temp').innerText = randomFloat(36.5, 38.5, 1) + " °C";
+            document.getElementById('val-pump').innerText = parseInt(randomFloat(75, 85, 0)) + " %";
+
+            // Simulation : 90% eau propre, 10% eau savonneuse
+            const isSavon = Math.random() > 0.9;
+
+            let ntu, tds;
+
+            if (isSavon) {
+                ntu = randomFloat(100, 300, 0); 
+                tds = randomFloat(500, 800, 0); 
+                
+                document.getElementById('stat-turb').innerHTML = '<span class="fr">Eau Trouble !</span><span class="en">Cloudy!</span>';
+                document.getElementById('stat-turb').className = "dash-status status-alert";
+                
+                document.getElementById('stat-tds').innerHTML = '<span class="fr">Savon Détecté</span><span class="en">Soap Detected</span>';
+                document.getElementById('stat-tds').className = "dash-status status-alert";
+
+                document.getElementById('val-mode').innerText = "REJET 🚿";
+                document.getElementById('stat-mode').innerHTML = '<span class="fr">Évacuation</span><span class="en">Draining</span>';
+                document.getElementById('stat-mode').className = "dash-status status-alert";
+                
+                document.getElementById('val-uv').innerText = "OFF";
+            } else {
+                ntu = randomFloat(5, 25, 0); 
+                tds = randomFloat(80, 150, 0);
+                
+                document.getElementById('stat-turb').innerHTML = '<span class="fr">Eau Claire</span><span class="en">Clear Water</span>';
+                document.getElementById('stat-turb').className = "dash-status status-ok";
+                
+                document.getElementById('stat-tds').innerHTML = '<span class="fr">Sans Savon</span><span class="en">No Soap</span>';
+                document.getElementById('stat-tds').className = "dash-status status-ok";
+
+                document.getElementById('val-mode').innerText = "AQUOS ♻️";
+                document.getElementById('stat-mode').innerHTML = '<span class="fr">Recyclage actif</span><span class="en">Active recycling</span>';
+                document.getElementById('stat-mode').className = "dash-status status-ok";
+
+                document.getElementById('val-uv').innerText = "ON";
+            }
+
+            document.getElementById('val-turb').innerText = ntu + " NTU";
+            document.getElementById('val-tds').innerText = tds + " ppm";
+
+        }, 3000); 
     </script>
 </body>
 </html>
