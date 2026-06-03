@@ -19,12 +19,15 @@ async function recupererVraiesDonnees() {
         const differenceSecondes = (maintenant - derniereMiseAJour) / 1000;
         const badge = document.getElementById('carte-statut');
 
-        // --- TOLÉRANCE INTELLIGENTE ---
+        // --- DÉCOUPAGE DE LA DONNÉE ADAFRUIT ---
+        let valeurs = data.last_value.split(',');
+        
+        // Sécurité anti-yoyo : on nettoie le texte (.trim()) pour être sûr à 100%
+        let vraiDernierMode = (valeurs.length === 6) ? valeurs[5].trim() : "NORMAL";
         let toleranceSecondes = 40; 
-        let dernierModeConnu = document.getElementById('val-mode').innerText;
 
-        if (dernierModeConnu === "AQUOS" || dernierModeConnu === "NORMAL" || dernierModeConnu === "MANUEL") {
-            toleranceSecondes = 7; // Détection rapide (7s) en fonctionnement
+        if (vraiDernierMode === "AQUOS" || vraiDernierMode === "NORMAL" || vraiDernierMode === "MANUEL") {
+            toleranceSecondes = 12; // Détection à 12s pour absorber les latences du Wi-Fi
         } else {
             toleranceSecondes = 40; // Patience (40s) en mode Veille
         }
@@ -35,15 +38,13 @@ async function recupererVraiesDonnees() {
             badge.style.color = "#2e7d32";
             badge.innerHTML = '<span class="fr">🟢 Système AQUOS en ligne</span><span class="en">🟢 AQUOS System online</span>';
 
-            let valeurs = data.last_value.split(',');
-            
             if(valeurs.length === 6) {
                 let tempVal = parseFloat(valeurs[0]).toFixed(1);
                 let ntu = parseFloat(valeurs[1]).toFixed(0);
                 let ppm = parseFloat(valeurs[2]).toFixed(0);
                 let pompeVal = valeurs[3];
                 let uvVal = valeurs[4];
-                let modeStr = valeurs[5];
+                let modeStr = valeurs[5].trim();
 
                 // 1. Température 
                 let tempFloat = parseFloat(tempVal);
@@ -130,5 +131,5 @@ async function recupererVraiesDonnees() {
 
 // Initialisation au chargement
 recupererVraiesDonnees();
-// Boucle toutes les 3 secondes
+// Boucle unique
 setInterval(recupererVraiesDonnees, 3000);
