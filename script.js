@@ -7,7 +7,7 @@ function toggleLanguage() {
 }
 
 // --- 2. RÉCUPÉRATION DU PACK DE DONNÉES ADAFRUIT IO API ---
-const username = "sasoukii";
+const username = "sasouki";
 
 async function recupererVraiesDonnees() {
     try {
