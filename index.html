@@ -8,7 +8,6 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     
-    <!-- CHARGEMENT DE LA BIBLIOTHÈQUE CHART.JS (NÉCESSAIRE POUR LE GRAPH) -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="script.js"></script>
 </head>
@@ -30,23 +29,32 @@
         </nav>
     </header>
 
-    <!-- ================= ACCUEIL ================= -->
     <section id="accueil">
-        <h1>
-            <span class="fr">AQUOS — La douche qui recycle l’eau intelligemment</span>
-            <span class="en">AQUOS — The intelligently recycling shower</span>
-        </h1>
-        <p class="subtitle">
-            <span class="fr">Aquos est un système innovant qui permet de réutiliser l’eau de la douche en temps réel, tout en garantissant une eau propre, filtrée et désinfectée.</span>
-            <span class="en">Aquos is an innovative system that allows you to reuse shower water in real-time, while guaranteeing clean, filtered, and disinfected water.</span>
-        </p>
-        <div class="highlight-box">
-            <span class="fr">Objectif : Réduire la consommation d’eau jusqu’à 70 %</span>
-            <span class="en">Goal: Reduce water consumption by up to 70%</span>
+        <video autoplay muted loop playsinline class="background-video video-active" id="bg-video-1">
+            <source src="nature1.mp4" type="video/mp4">
+        </video>
+        <video autoplay muted loop playsinline class="background-video" id="bg-video-2">
+            <source src="nature2.mp4" type="video/mp4">
+        </video>
+        
+        <div class="video-overlay"></div>
+
+        <div class="accueil-content">
+            <h1>
+                <span class="fr">AQUOS — La douche qui recycle l’eau intelligemment</span>
+                <span class="en">AQUOS — The intelligently recycling shower</span>
+            </h1>
+            <p class="subtitle">
+                <span class="fr">Aquos est un système innovant qui permet de réutiliser l’eau de la douche en temps réel, tout en garantissant une eau propre, filtrée et désinfectée.</span>
+                <span class="en">Aquos is an innovative system that allows you to reuse shower water in real-time, while guaranteeing clean, filtered, and disinfected water.</span>
+            </p>
+            <div class="highlight-box">
+                <span class="fr">Objectif : Réduire la consommation d’eau jusqu’à 70 %</span>
+                <span class="en">Goal: Reduce water consumption by up to 70%</span>
+            </div>
         </div>
     </section>
 
-    <!-- ================= FONCTIONNEMENT ================= -->
     <section id="fonctionnement">
         <h2>
             <span class="fr">Comment ça marche ?</span>
@@ -76,7 +84,6 @@
         </div>
     </section>
 
-    <!-- ================= LA TECHNOLOGIE ================= -->
     <section id="tech">
         <h2>
             <span class="fr">La Technologie</span>
@@ -85,7 +92,7 @@
         <div class="grid">
             <div class="card">
                 <h3 style="color: var(--primary); margin-bottom: 15px;">🧠 <span class="fr">Un cœur intelligent</span><span class="en">A smart brain</span></h3>
-                <p><span class="fr">L’ESP32 Nano est un petit module électronique qui permet à Aquos de lire les capteurs, prendre des decisions en temps réel et optimiser l'eau. C'est le cerveau du système.</span><span class="en">The ESP32 Nano is a small electronic module that allows Aquos to read sensors, make real-time decisions, and optimize water. It's the brain of the system.</span></p>
+                <p><span class="fr">L’ESP32 Nano est un petit module électronique qui permet à Aquos de lire les capteurs, prendre des décisions en temps réel et optimiser l'eau. C'est le cerveau du système.</span><span class="en">The ESP32 Nano is a small electronic module that allows Aquos to read sensors, make real-time decisions, and optimize water. It's the brain of the system.</span></p>
             </div>
             <div class="card">
                 <h3 style="color: var(--primary); margin-bottom: 15px;">👁️ <span class="fr">Les Capteurs</span><span class="en">The Sensors</span></h3>
@@ -108,7 +115,6 @@
         </div>
     </section>
 
-    <!-- ================= POURQUOI CHOISIR AQUOS ================= -->
     <section id="pourquoi" style="background: white;">
         <h2>
             <span class="fr">Pourquoi choisir Aquos ?</span>
@@ -138,7 +144,6 @@
         </div>
     </section>
 
-    <!-- ================= TABLEAU COMPARATIF ================= -->
     <section id="comparatif" style="background: var(--light);">
         <h2>
             <span class="fr">⚖️ AQUOS vs Douche Classique</span>
@@ -184,7 +189,6 @@
         </div>
     </section>
 
-    <!-- ================= TABLEAU DE BORD EN DIRECT ================= -->
     <section id="dashboard">
         <h2>
             <span class="fr">Tableau de Bord en Direct</span>
@@ -224,7 +228,7 @@
             </div>
 
             <div class="dash-card">
-                <div class="dash-title"><span class="fr">Température (DS18B20)</span><span class="en">Temperature</span></div>
+                <div class="dash-title"><span class="fr">Température</span><span class="en">Temperature</span></div>
                 <div class="thermo-wrapper">
                     <div class="thermo-gauge">
                         <div class="thermo-tube">
@@ -264,19 +268,16 @@
         </div>
     </section>
 
-<!-- ================= CONSOLE DE GRAPHIQUES INTERACTIFS ================= -->
     <section id="analyse" style="background: var(--light); padding-top: 40px;">
         <h2>
             <span class="fr">📊 Analyse d'un Cycle de Douche</span>
             <span class="en">📊 Shower Cycle Analysis</span>
         </h2>
-        <!-- AJOUT D'UNE HAUTEUR FIXE POUR SAUVER LE MOBILE -->
         <div class="card" style="position: relative; height: 400px; width: 100%; max-width: 900px; margin: auto; padding: 20px;">
             <canvas id="showerChart"></canvas>
         </div>
     </section>
 
-    <!-- ================= ARCHITECTURE RÉSEAU IOT ================= -->
     <section id="architecture" style="background: white;">
         <h2>
             <span class="fr">🌐 Architecture Réseau & Parcours de la Donnée</span>
@@ -331,7 +332,6 @@
         </div>
     </section>
 
-    <!-- ================= L'ÉQUIPE ================= -->
     <section id="equipe" style="background: white;">
         <h2>
             <span class="fr">Le Projet & L'Équipe</span>
@@ -342,31 +342,49 @@
                 <h3>Prénom 1</h3>
                 <p><b><span class="fr">Électronique</span><span class="en">Electronics</span></b></p>
                 <p style="margin-bottom: auto;"><span class="fr">Conception du cerveau ESP32 et sécurité du système.</span><span class="en">Design of the ESP32 brain and system security.</span></p>
+                <a href="https://instagram.com/pseudo1" class="btn btn-insta" target="_blank" style="margin-top: 15px;">
+                    <i class="fa-brands fa-instagram"></i> Instagram
+                </a>
             </div>
             <div class="card team-member" style="display: flex; flex-direction: column; align-items: center;">
                 <h3>Prénom 2</h3>
                 <p><b><span class="fr">Filtration</span><span class="en">Filtration</span></b></p>
                 <p style="margin-bottom: auto;"><span class="fr">Gestion du traitement de l'eau et de l'UV-C.</span><span class="en">Management of water treatment and UV-C.</span></p>
+                <a href="https://instagram.com/pseudo2" class="btn btn-insta" target="_blank" style="margin-top: 15px;">
+                    <i class="fa-brands fa-instagram"></i> Instagram
+                </a>
             </div>
             <div class="card team-member" style="display: flex; flex-direction: column; align-items: center;">
                 <h3>Prénom 3</h3>
                 <p><b><span class="fr">Logiciel</span><span class="en">Software</span></b></p>
                 <p style="margin-bottom: auto;"><span class="fr">Programmation des capteurs et de l'interface.</span><span class="en">Programming of sensors and interface.</span></p>
+                <a href="https://instagram.com/pseudo3" class="btn btn-insta" target="_blank" style="margin-top: 15px;">
+                    <i class="fa-brands fa-instagram"></i> Instagram
+                </a>
             </div>
             <div class="card team-member" style="display: flex; flex-direction: column; align-items: center;">
                 <h3>Prénom 4</h3>
                 <p><b><span class="fr">Électronique</span><span class="en">Electronics</span></b></p>
                 <p style="margin-bottom: auto;"><span class="fr">Conception du cerveau ESP32 et sécurité du système.</span><span class="en">Design of the ESP32 brain and system security.</span></p>
+                <a href="https://instagram.com/pseudo4" class="btn btn-insta" target="_blank" style="margin-top: 15px;">
+                    <i class="fa-brands fa-instagram"></i> Instagram
+                </a>
             </div>
             <div class="card team-member" style="display: flex; flex-direction: column; align-items: center;">
                 <h3>Prénom 5</h3>
                 <p><b><span class="fr">Filtration</span><span class="en">Filtration</span></b></p>
                 <p style="margin-bottom: auto;"><span class="fr">Gestion du traitement de l'eau et de l'UV-C.</span><span class="en">Management of water treatment and UV-C.</span></p>
+                <a href="https://instagram.com/pseudo5" class="btn btn-insta" target="_blank" style="margin-top: 15px;">
+                    <i class="fa-brands fa-instagram"></i> Instagram
+                </a>
             </div>
             <div class="card team-member" style="display: flex; flex-direction: column; align-items: center;">
                 <h3>Prénom 6</h3>
                 <p><b><span class="fr">Logiciel</span><span class="en">Software</span></b></p>
                 <p style="margin-bottom: auto;"><span class="fr">Programmation des capteurs et de l'interface.</span><span class="en">Programming of sensors and interface.</span></p>
+                <a href="https://instagram.com/pseudo6" class="btn btn-insta" target="_blank" style="margin-top: 15px;">
+                    <i class="fa-brands fa-instagram"></i> Instagram
+                </a>
             </div>
         </div>
 
@@ -379,7 +397,6 @@
         </div>
     </section>
 
-    <!-- ================= CONTACT ================= -->
     <section id="contact">
         <div class="contact-box" style="display: flex; flex-direction: column; align-items: center;">
             <h2>Contact</h2>

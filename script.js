@@ -4,7 +4,7 @@ function toggleLanguage() {
     const btn = document.getElementById('btn-lang');
     btn.innerText = document.body.classList.contains('lang-en') ? "EN / FR" : "FR / EN";
     recupererVraiesDonnees(); 
-    initialiserGraphique(); // Relance le graphique pour le traduire
+    initialiserGraphique(); 
 }
 
 // --- 2. RÉCUPÉRATION DU PACK DE DONNÉES ADAFRUIT IO API ---
@@ -23,14 +23,13 @@ async function recupererVraiesDonnees() {
         // --- DÉCOUPAGE DE LA DONNÉE ADAFRUIT ---
         let valeurs = data.last_value.split(',');
         
-        // Sécurité anti-yoyo : on nettoie le texte (.trim()) pour être sûr à 100%
         let vraiDernierMode = (valeurs.length === 6) ? valeurs[5].trim() : "NORMAL";
         let toleranceSecondes = 40; 
 
         if (vraiDernierMode === "AQUOS" || vraiDernierMode === "NORMAL" || vraiDernierMode === "MANUEL") {
-            toleranceSecondes = 12; // Détection à 12s pour absorber les latences du Wi-Fi
+            toleranceSecondes = 12; 
         } else {
-            toleranceSecondes = 40; // Patience (40s) en mode Veille
+            toleranceSecondes = 40; 
         }
 
         // --- VÉRIFICATION DE LA CONNEXION ---
@@ -47,14 +46,13 @@ async function recupererVraiesDonnees() {
                 let uvVal = valeurs[4].trim();
                 let modeStr = valeurs[5].trim();
 
-                // 1. Température & Animation de la jauge thermique
+                // 1. Température
                 let tempFloat = parseFloat(tempVal);
                 document.getElementById('val-temp').innerText = tempVal + " °C";
 
                 const thermoLiquid = document.getElementById('thermo-liquid');
                 const thermoBulb = document.getElementById('thermo-bulb');
 
-                // Échelle de conversion : 15°C = jauge vide (0%), 42°C = jauge pleine (100%)
                 const tempMin = 15;
                 const tempMax = 42;
                 let pourcentageHauteur = ((tempFloat - tempMin) / (tempMax - tempMin)) * 100;
@@ -109,7 +107,7 @@ async function recupererVraiesDonnees() {
                     document.getElementById('stat-tds').innerHTML = '<span class="fr">Pureté OK</span><span class="en">Purity OK</span>';
                 }
 
-                // 4. Pompe & Jauge à aiguille
+                // 4. Pompe
                 document.getElementById('val-pump').innerText = pompeVal + " %";
                 
                 let pompePourcentage = parseFloat(pompeVal);
@@ -124,7 +122,7 @@ async function recupererVraiesDonnees() {
                 document.getElementById('stat-pump').className = pompePourcentage > 0 ? "dash-status status-ok" : "dash-status status-neutral";
                 document.getElementById('stat-pump').innerHTML = pompePourcentage > 0 ? '<span class="fr">En marche</span><span class="en">Running</span>' : '<span class="fr">À l\'arrêt</span><span class="en">Stopped</span>';
 
-                // 5. UV & Interrupteur (Toggle)
+                // 5. UV
                 let uvSwitch = document.getElementById('uv-switch');
                 if (uvSwitch) {
                     if (uvVal === "ON") {
@@ -155,12 +153,11 @@ async function recupererVraiesDonnees() {
             }
 
         } else {
-            // SI HORS LIGNE
+            // HORS LIGNE
             badge.style.background = "#ffebee";
             badge.style.color = "#c62828";
             badge.innerHTML = '<span class="fr">🔴 Système AQUOS hors ligne</span><span class="en">🔴 AQUOS System offline</span>';
             
-            // Remise à zéro Thermomètre
             const thermoLiquid = document.getElementById('thermo-liquid');
             const thermoBulb = document.getElementById('thermo-bulb');
             if (thermoLiquid && thermoBulb) {
@@ -169,11 +166,9 @@ async function recupererVraiesDonnees() {
                 thermoBulb.style.backgroundColor = "#6c757d";
             }
 
-            // Remise à zéro Aiguille Pompe
             const needle = document.getElementById('pump-needle');
             if (needle) needle.style.transform = "rotate(-90deg)";
             
-            // Remise à zéro Interrupteur UV
             const uvSwitch = document.getElementById('uv-switch');
             if (uvSwitch) uvSwitch.classList.remove('active');
 
@@ -194,19 +189,16 @@ let showerChart = null;
 
 function initialiserGraphique() {
     const ctx = document.getElementById('showerChart');
-    if (!ctx) return; // Si la balise canvas n'existe pas, on annule
+    if (!ctx) return; 
 
-    // Détection de la langue
     const isEn = document.body.classList.contains('lang-en');
 
-    // Données de simulation d'une douche de 10 min
     const labelsFr = ["0 min (Démarrage)", "1 min (Savon)", "2 min (Rinçage)", "3 min", "4 min (AQUOS)", "5 min", "6 min", "7 min", "8 min", "9 min", "10 min (Fin)"];
     const labelsEn = ["0 min (Start)", "1 min (Soap)", "2 min (Rinsing)", "3 min", "4 min (AQUOS)", "5 min", "6 min", "7 min", "8 min", "9 min", "10 min (End)"];
 
-    const donneesTurbidite = [10, 180, 120, 45, 12, 10, 9, 11, 10, 10, 8]; // NTU
-    const donneesTDS = [150, 2100, 1400, 390, 180, 160, 155, 162, 158, 150, 145]; // ppm
+    const donneesTurbidite = [10, 180, 120, 45, 12, 10, 9, 11, 10, 10, 8]; 
+    const donneesTDS = [150, 2100, 1400, 390, 180, 160, 155, 162, 158, 150, 145]; 
 
-    // Destruction du graphique précédent pour éviter les superpositions
     if (showerChart) {
         showerChart.destroy();
     }
@@ -263,10 +255,35 @@ function initialiserGraphique() {
     });
 }
 
+// --- 4. ANIMATION DES VIDÉOS D'ACCUEIL (FONDU ENCHAÎNÉ) ---
+function initialiserVideosAccueil() {
+    const video1 = document.getElementById('bg-video-1');
+    const video2 = document.getElementById('bg-video-2');
+    
+    if (!video1 || !video2) return;
+
+    // Change la vidéo visible toutes les 10 secondes
+    setInterval(() => {
+        // 1. On intervertit les classes pour lancer le fondu CSS
+        video1.classList.toggle('video-active');
+        video2.classList.toggle('video-active');
+
+        // 2. On vérifie laquelle vient de devenir active pour la forcer à démarrer à 0s
+        if (video1.classList.contains('video-active')) {
+            video1.currentTime = 0; // Remet la vidéo 1 au tout début
+            video1.play();          // Force la lecture au cas où
+        } else {
+            video2.currentTime = 0; // Remet la vidéo 2 au tout début
+            video2.play();          // Force la lecture au cas où
+        }
+    }, 10000); 
+}
+
 // Initialisations globales au chargement de la page
 window.addEventListener('load', () => {
     recupererVraiesDonnees();
     initialiserGraphique(); 
+    initialiserVideosAccueil(); // 🚨 C'EST CETTE LIGNE QUI ALLUME LE MOTEUR DES VIDÉOS !
 });
 
 // Boucle réseau

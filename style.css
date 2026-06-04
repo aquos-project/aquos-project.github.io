@@ -136,39 +136,93 @@ h2 {
     box-shadow: var(--card-shadow); 
 }
 
-/* ================= ACCUEIL ================= */
+/* ================= ACCUEIL STYLE AVEC 2 VIDÉOS ================= */
 #accueil { 
-    text-align: center; 
+    position: relative;
+    width: 100%;
+    max-width: 100%; 
+    padding: 0; 
+    margin: 0;
+    min-height: 100vh; 
     display: flex; 
-    flex-direction: column; 
     align-items: center; 
     justify-content: center; 
-    min-height: 85vh; 
+    overflow: hidden;
+    background-color: #000; 
 }
 
-h1 { 
+/* Style commun pour les deux vidéos */
+.background-video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    transform: translate(-50%, -50%);
+    object-fit: cover;
+    z-index: 1;
+    opacity: 0; 
+    transition: opacity 2s ease-in-out; 
+    will-change: opacity;
+    filter: brightness(1.2);
+}
+
+/* Classe spéciale pour la vidéo qui doit être affichée */
+.background-video.video-active {
+    opacity: 1;
+}
+
+/* Le voile bleu/noir transparent pour le contraste du texte */
+.video-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 24, 36, 0.5);
+    z-index: 2;
+}
+
+/* Met le texte au premier plan */
+.accueil-content {
+    position: relative;
+    z-index: 3;
+    text-align: center;
+    max-width: 800px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#accueil h1 { 
     font-size: 2.8rem; 
-    color: var(--primary); 
+    color: var(--white); 
     margin-bottom: 20px; 
     line-height: 1.2;
+    text-shadow: 0 4px 15px rgba(0,0,0,0.4);
 }
 
-.subtitle { 
+#accueil .subtitle { 
     font-size: 1.2rem; 
-    color: #555; 
+    color: #e9ecef; 
     max-width: 700px; 
     margin-bottom: 30px; 
+    text-shadow: 0 2px 8px rgba(0,0,0,0.4);
 }
 
-.highlight-box { 
-    background: linear-gradient(135deg, var(--primary), var(--secondary)); 
-    color: white; 
+#accueil .highlight-box { 
+    background: var(--white); 
+    color: var(--primary); 
     padding: 15px 30px; 
     border-radius: 12px; 
     font-size: 1.4rem; 
     font-weight: bold; 
     width: 100%;
     max-width: 500px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.2);
 }
 
 /* ================= COMMENT ÇA MARCHE ================= */
@@ -295,7 +349,7 @@ h1 {
     display: flex; 
     justify-content: center; 
     align-items: center; 
-    width: 200px; /* Largeur fixe pour que les boutons fassent la même taille */
+    width: 200px; 
     background: var(--primary); 
     color: white; 
     padding: 12px 25px; 
@@ -307,7 +361,7 @@ h1 {
 }
 
 .btn i {
-    margin-right: 10px; /* Espace propre entre l'icône et le texte */
+    margin-right: 10px; 
     font-size: 1.3rem; 
 }
 
@@ -471,9 +525,29 @@ h1 {
 
 /* ================= AJUSTEMENTS ULTRA-COMPACTS POUR MOBILE 📱 ================= */
 @media (max-width: 768px) {
+    /* 🚨 CORRECTION DU CENTRAGE MOBILE 🚨 */
+    #accueil {
+        padding-top: 130px; /* Laisse juste l'espace pour le menu, sans pousser trop bas */
+        padding-bottom: 30px;
+    }
+    
+    #accueil h1 {
+        font-size: 1.9rem; /* Un poil plus petit pour un rendu plus élégant */
+        margin-top: 0;
+    }
+    
+    #accueil .subtitle {
+        font-size: 1rem; /* Ajuste le paragraphe */
+        margin-bottom: 25px;
+    }
+    
+    #accueil .highlight-box {
+        font-size: 1.15rem; /* Réduit un peu le texte du bouton pour qu'il respire mieux */
+        padding: 12px 20px;
+    }
+
     nav { flex-direction: column; gap: 6px; padding: 8px 5%; }
     
-    /* Correction du logo sur mobile */
     .logo-container { justify-content: center; }
     .nav-logo { height: 38px; width: 38px; }
     .logo-text { font-size: 1.2rem; }
@@ -482,22 +556,16 @@ h1 {
     .nav-links a { font-size: 0.75rem; }
     .lang-btn { padding: 2px 8px; font-size: 0.7rem; }
     section { padding-top: 110px; padding-bottom: 25px; }
-    h1 { font-size: 1.5rem; }
-    .subtitle { font-size: 0.95rem; }
-    .highlight-box { font-size: 1rem; padding: 10px 15px; }
     h2 { font-size: 1.4rem; margin-bottom: 20px; }
     .step-box { padding: 12px 15px; margin-bottom: 10px; }
     .step-box h3 { font-size: 1rem; margin-bottom: 4px; }
     .step-box p { font-size: 0.85rem; }
     
-    /* Tableau comparatif mobile */
     .compare-table th, .compare-table td {
         padding: 12px 10px;
         font-size: 0.85rem;
     }
-    .compare-table th {
-        font-size: 0.95rem;
-    }
+    .compare-table th { font-size: 0.95rem; }
     
     .dashboard-grid { grid-template-columns: repeat(2, 1fr); gap: 8px; margin-bottom: 25px; }
     .dash-card { padding: 15px 5px; }
