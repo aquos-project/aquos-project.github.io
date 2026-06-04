@@ -4,6 +4,7 @@ function toggleLanguage() {
     const btn = document.getElementById('btn-lang');
     btn.innerText = document.body.classList.contains('lang-en') ? "EN / FR" : "FR / EN";
     recupererVraiesDonnees(); 
+    initialiserGraphique(); // Relance le graphique pour le traduire
 }
 
 // --- 2. RÉCUPÉRATION DU PACK DE DONNÉES ADAFRUIT IO API ---
@@ -43,25 +44,49 @@ async function recupererVraiesDonnees() {
                 let ntu = parseFloat(valeurs[1]).toFixed(0);
                 let ppm = parseFloat(valeurs[2]).toFixed(0);
                 let pompeVal = valeurs[3];
-                let uvVal = valeurs[4];
+                let uvVal = valeurs[4].trim();
                 let modeStr = valeurs[5].trim();
 
-                // 1. Température 
+                // 1. Température & Animation de la jauge thermique
                 let tempFloat = parseFloat(tempVal);
                 document.getElementById('val-temp').innerText = tempVal + " °C";
+
+                const thermoLiquid = document.getElementById('thermo-liquid');
+                const thermoBulb = document.getElementById('thermo-bulb');
+
+                // Échelle de conversion : 15°C = jauge vide (0%), 42°C = jauge pleine (100%)
+                const tempMin = 15;
+                const tempMax = 42;
+                let pourcentageHauteur = ((tempFloat - tempMin) / (tempMax - tempMin)) * 100;
+                
+                if (pourcentageHauteur < 0) pourcentageHauteur = 0;
+                if (pourcentageHauteur > 100) pourcentageHauteur = 100;
+
+                let couleurThermique = "#0077b6"; 
 
                 if (tempFloat === -127.0) {
                     document.getElementById('stat-temp').className = "dash-status status-alert";
                     document.getElementById('stat-temp').innerHTML = '<span class="fr">Erreur Capteur ⚠️</span><span class="en">Sensor Error ⚠️</span>';
+                    pourcentageHauteur = 0;
+                    couleurThermique = "#6c757d"; 
                 } else if (tempFloat < 35.0) {
                     document.getElementById('stat-temp').className = "dash-status status-neutral";
                     document.getElementById('stat-temp').innerHTML = '<span class="fr">Eau Froide 🥶</span><span class="en">Cold Water 🥶</span>';
+                    couleurThermique = "#0077b6"; 
                 } else if (tempFloat >= 35.0 && tempFloat <= 39.0) {
                     document.getElementById('stat-temp').className = "dash-status status-ok";
                     document.getElementById('stat-temp').innerHTML = '<span class="fr">Idéale 🌡️</span><span class="en">Ideal 🌡️</span>';
+                    couleurThermique = "#20c997"; 
                 } else {
                     document.getElementById('stat-temp').className = "dash-status status-alert";
                     document.getElementById('stat-temp').innerHTML = '<span class="fr">Trop Chaude ! 🔥</span><span class="en">Too Hot! 🔥</span>';
+                    couleurThermique = "#dc3545"; 
+                }
+
+                if (thermoLiquid && thermoBulb) {
+                    thermoLiquid.style.height = pourcentageHauteur + "%";
+                    thermoLiquid.style.backgroundColor = couleurThermique;
+                    thermoBulb.style.backgroundColor = couleurThermique;
                 }
 
                 // 2. Turbidité
@@ -84,13 +109,31 @@ async function recupererVraiesDonnees() {
                     document.getElementById('stat-tds').innerHTML = '<span class="fr">Pureté OK</span><span class="en">Purity OK</span>';
                 }
 
-                // 4. Pompe
+                // 4. Pompe & Jauge à aiguille
                 document.getElementById('val-pump').innerText = pompeVal + " %";
-                document.getElementById('stat-pump').className = pompeVal > 0 ? "dash-status status-ok" : "dash-status status-neutral";
-                document.getElementById('stat-pump').innerHTML = pompeVal > 0 ? '<span class="fr">En marche</span><span class="en">Running</span>' : '<span class="fr">À l\'arrêt</span><span class="en">Stopped</span>';
+                
+                let pompePourcentage = parseFloat(pompeVal);
+                if (isNaN(pompePourcentage)) pompePourcentage = 0;
+                if (pompePourcentage < 0) pompePourcentage = 0;
+                if (pompePourcentage > 100) pompePourcentage = 100;
+                
+                let angleAiguille = -90 + (pompePourcentage * 1.8); 
+                let needle = document.getElementById('pump-needle');
+                if (needle) needle.style.transform = `rotate(${angleAiguille}deg)`;
 
-                // 5. UV
-                document.getElementById('val-uv').innerText = uvVal;
+                document.getElementById('stat-pump').className = pompePourcentage > 0 ? "dash-status status-ok" : "dash-status status-neutral";
+                document.getElementById('stat-pump').innerHTML = pompePourcentage > 0 ? '<span class="fr">En marche</span><span class="en">Running</span>' : '<span class="fr">À l\'arrêt</span><span class="en">Stopped</span>';
+
+                // 5. UV & Interrupteur (Toggle)
+                let uvSwitch = document.getElementById('uv-switch');
+                if (uvSwitch) {
+                    if (uvVal === "ON") {
+                        uvSwitch.classList.add('active'); 
+                    } else {
+                        uvSwitch.classList.remove('active'); 
+                    }
+                }
+                
                 document.getElementById('stat-uv').className = uvVal === "ON" ? "dash-status status-ok" : "dash-status status-neutral";
                 document.getElementById('stat-uv').innerHTML = uvVal === "ON" ? '<span class="fr">Traitement actif</span><span class="en">Active</span>' : '<span class="fr">Inactif</span><span class="en">Inactive</span>';
 
@@ -117,6 +160,23 @@ async function recupererVraiesDonnees() {
             badge.style.color = "#c62828";
             badge.innerHTML = '<span class="fr">🔴 Système AQUOS hors ligne</span><span class="en">🔴 AQUOS System offline</span>';
             
+            // Remise à zéro Thermomètre
+            const thermoLiquid = document.getElementById('thermo-liquid');
+            const thermoBulb = document.getElementById('thermo-bulb');
+            if (thermoLiquid && thermoBulb) {
+                thermoLiquid.style.height = "0%";
+                thermoLiquid.style.backgroundColor = "#6c757d";
+                thermoBulb.style.backgroundColor = "#6c757d";
+            }
+
+            // Remise à zéro Aiguille Pompe
+            const needle = document.getElementById('pump-needle');
+            if (needle) needle.style.transform = "rotate(-90deg)";
+            
+            // Remise à zéro Interrupteur UV
+            const uvSwitch = document.getElementById('uv-switch');
+            if (uvSwitch) uvSwitch.classList.remove('active');
+
             const ids = ['mode', 'temp', 'turb', 'tds', 'pump', 'uv'];
             ids.forEach(id => {
                 document.getElementById('val-' + id).innerText = id === 'mode' ? '...' : (id === 'uv' ? '--' : '-- ' + (id === 'temp' ? '°C' : (id === 'turb' ? 'NTU' : (id === 'tds' ? 'ppm' : '%'))));
@@ -129,7 +189,84 @@ async function recupererVraiesDonnees() {
     }
 }
 
-// Initialisation au chargement
-recupererVraiesDonnees();
-// Boucle unique
+// --- 3. CONFIGURATION DU GRAPHIQUE HISTORIQUE (CHART.JS) ---
+let showerChart = null;
+
+function initialiserGraphique() {
+    const ctx = document.getElementById('showerChart');
+    if (!ctx) return; // Si la balise canvas n'existe pas, on annule
+
+    // Détection de la langue
+    const isEn = document.body.classList.contains('lang-en');
+
+    // Données de simulation d'une douche de 10 min
+    const labelsFr = ["0 min (Démarrage)", "1 min (Savon)", "2 min (Rinçage)", "3 min", "4 min (AQUOS)", "5 min", "6 min", "7 min", "8 min", "9 min", "10 min (Fin)"];
+    const labelsEn = ["0 min (Start)", "1 min (Soap)", "2 min (Rinsing)", "3 min", "4 min (AQUOS)", "5 min", "6 min", "7 min", "8 min", "9 min", "10 min (End)"];
+
+    const donneesTurbidite = [10, 180, 120, 45, 12, 10, 9, 11, 10, 10, 8]; // NTU
+    const donneesTDS = [150, 2100, 1400, 390, 180, 160, 155, 162, 158, 150, 145]; // ppm
+
+    // Destruction du graphique précédent pour éviter les superpositions
+    if (showerChart) {
+        showerChart.destroy();
+    }
+
+    showerChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: isEn ? labelsEn : labelsFr,
+            datasets: [
+                {
+                    label: isEn ? 'Turbidity (NTU)' : 'Turbidité (NTU)',
+                    data: donneesTurbidite,
+                    borderColor: '#00b4d8',
+                    backgroundColor: 'rgba(0, 180, 216, 0.1)',
+                    yAxisID: 'yTurb',
+                    tension: 0.3,
+                    fill: true
+                },
+                {
+                    label: isEn ? 'Chemical Purity - TDS (ppm)' : 'Pureté Chimique - TDS (ppm)',
+                    data: donneesTDS,
+                    borderColor: '#7209b7',
+                    backgroundColor: 'rgba(114, 9, 183, 0.05)',
+                    yAxisID: 'yTDS',
+                    tension: 0.3,
+                    fill: true
+                }
+            ]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: { position: 'top' }
+            },
+            scales: {
+                yTurb: {
+                    type: 'linear',
+                    position: 'left',
+                    title: { display: true, text: 'Turbidité (NTU)' },
+                    min: 0,
+                    max: 250
+                },
+                yTDS: {
+                    type: 'linear',
+                    position: 'right',
+                    title: { display: true, text: 'TDS (ppm)' },
+                    min: 0,
+                    max: 2500,
+                    grid: { drawOnChartArea: false } 
+                }
+            }
+        }
+    });
+}
+
+// Initialisations globales au chargement de la page
+window.addEventListener('load', () => {
+    recupererVraiesDonnees();
+    initialiserGraphique(); 
+});
+
+// Boucle réseau
 setInterval(recupererVraiesDonnees, 3000);

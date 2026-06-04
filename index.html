@@ -6,23 +6,31 @@
     <title>AQUOS - La Douche Intelligente</title>
     
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    
+    <!-- CHARGEMENT DE LA BIBLIOTHÈQUE CHART.JS (NÉCESSAIRE POUR LE GRAPH) -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="script.js"></script>
 </head>
 <body>
 
     <header>
         <nav>
-            <a href="#accueil" class="logo">💧 AQUOS</a>
+            <a href="#accueil" class="logo-container">
+                <img src="logo.jpg" alt="AQUOS Logo" class="nav-logo">
+                <span class="logo-text">AQUOS</span>
+            </a>
             <ul class="nav-links">
                 <li><a href="#fonctionnement"><span class="fr">Fonctionnement</span><span class="en">How it works</span></a></li>
                 <li><a href="#tech"><span class="fr">Technologie</span><span class="en">Tech</span></a></li>
-                <li><a href="#equipe"><span class="fr">L'Équipe</span><span class="en">Team</span></a></li>
                 <li><a href="#dashboard"><span class="fr">En Direct</span><span class="en">Live</span></a></li>
+                <li><a href="#equipe"><span class="fr">L'Équipe</span><span class="en">Team</span></a></li>
                 <li><button class="lang-btn" onclick="toggleLanguage()" id="btn-lang">FR / EN</button></li>
             </ul>
         </nav>
     </header>
 
+    <!-- ================= ACCUEIL ================= -->
     <section id="accueil">
         <h1>
             <span class="fr">AQUOS — La douche qui recycle l’eau intelligemment</span>
@@ -38,6 +46,7 @@
         </div>
     </section>
 
+    <!-- ================= FONCTIONNEMENT ================= -->
     <section id="fonctionnement">
         <h2>
             <span class="fr">Comment ça marche ?</span>
@@ -50,7 +59,7 @@
             </div>
             <div class="step-box">
                 <h3><span class="fr">2. Elle est filtrée</span><span class="en">2. It is filtered</span></h3>
-                <p><span class="fr">Elle passe dans several filtres qui retirent les cheveux, les impuretés et les particules fines.</span><span class="en">It passes through several filters that remove hair, impurities, and fine particles.</span></p>
+                <p><span class="fr">Elle passe dans plusieurs filtres qui retirent les cheveux, les impuretés et les particules fines.</span><span class="en">It passes through several filters that remove hair, impurities, and fine particles.</span></p>
             </div>
             <div class="step-box">
                 <h3><span class="fr">3. Elle est désinfectée</span><span class="en">3. It is disinfected</span></h3>
@@ -67,6 +76,7 @@
         </div>
     </section>
 
+    <!-- ================= LA TECHNOLOGIE ================= -->
     <section id="tech">
         <h2>
             <span class="fr">La Technologie</span>
@@ -75,7 +85,7 @@
         <div class="grid">
             <div class="card">
                 <h3 style="color: var(--primary); margin-bottom: 15px;">🧠 <span class="fr">Un cœur intelligent</span><span class="en">A smart brain</span></h3>
-                <p><span class="fr">L’ESP32 Nano est un petit module électronique qui permet à Aquos de lire les capteurs, prendre des décisions en temps réel et optimiser l'eau. C'est le cerveau du système.</span><span class="en">The ESP32 Nano is a small electronic module that allows Aquos to read sensors, make real-time decisions, and optimize water. It's the brain of the system.</span></p>
+                <p><span class="fr">L’ESP32 Nano est un petit module électronique qui permet à Aquos de lire les capteurs, prendre des decisions en temps réel et optimiser l'eau. C'est le cerveau du système.</span><span class="en">The ESP32 Nano is a small electronic module that allows Aquos to read sensors, make real-time decisions, and optimize water. It's the brain of the system.</span></p>
             </div>
             <div class="card">
                 <h3 style="color: var(--primary); margin-bottom: 15px;">👁️ <span class="fr">Les Capteurs</span><span class="en">The Sensors</span></h3>
@@ -98,6 +108,7 @@
         </div>
     </section>
 
+    <!-- ================= POURQUOI CHOISIR AQUOS ================= -->
     <section id="pourquoi" style="background: white;">
         <h2>
             <span class="fr">Pourquoi choisir Aquos ?</span>
@@ -127,64 +138,53 @@
         </div>
     </section>
 
-    <section id="equipe">
+    <!-- ================= TABLEAU COMPARATIF ================= -->
+    <section id="comparatif" style="background: var(--light);">
         <h2>
-            <span class="fr">Le Projet & L'Équipe</span>
-            <span class="en">Project & Team</span>
+            <span class="fr">⚖️ AQUOS vs Douche Classique</span>
+            <span class="en">⚖️ AQUOS vs Standard Shower</span>
         </h2>
-        <div class="grid" style="margin-bottom: 50px;">
-            <div class="card team-member">
-                <h3>Prénom 1</h3>
-                <p><b><span class="fr">Électronique</span><span class="en">Electronics</span></b></p>
-                <p><span class="fr">Conception du cerveau ESP32 et sécurité du système.</span><span class="en">Design of the ESP32 brain and system security.</span></p>
-            </div>
-            <div class="card team-member">
-                <h3>Prénom 2</h3>
-                <p><b><span class="fr">Filtration</span><span class="en">Filtration</span></b></p>
-                <p><span class="fr">Gestion du traitement de l'eau et de l'UV-C.</span><span class="en">Management of water treatment and UV-C.</span></p>
-            </div>
-            <div class="card team-member">
-                <h3>Prénom 3</h3>
-                <p><b><span class="fr">Logiciel</span><span class="en">Software</span></b></p>
-                <p><span class="fr">Programmation des capteurs et de l'interface.</span><span class="en">Programming of sensors and interface.</span></p>
-            </div>
-            <div class="card team-member">
-                <h3>Prénom 4</h3>
-                <p><b><span class="fr">Électronique</span><span class="en">Electronics</span></b></p>
-                <p><span class="fr">Conception du cerveau ESP32 et sécurité du système.</span><span class="en">Design of the ESP32 brain and system security.</span></p>
-            </div>
-            <div class="card team-member">
-                <h3>Prénom 5</h3>
-                <p><b><span class="fr">Filtration</span><span class="en">Filtration</span></b></p>
-                <p><span class="fr">Gestion du traitement de l'eau et de l'UV-C.</span><span class="en">Management of water treatment and UV-C.</span></p>
-            </div>
-            <div class="card team-member">
-                <h3>Prénom 69</h3>
-                <p><b><span class="fr">Logiciel</span><span class="en">Software</span></b></p>
-                <p><span class="fr">Programmation des capteurs et de l'interface.</span><span class="en">Programming of sensors and interface.</span></p>
-            </div>
-        </div>
-
-        <div class="card" style="text-align: center;">
-            <h3 style="color: var(--primary); margin-bottom: 15px;">🎯 <span class="fr">Nos Objectifs</span><span class="en">Our Objectives</span></h3>
-            <p><span class="fr">1. Réduire la consommation domestique</span><span class="en">1. Reduce domestic consumption</span></p>
-            <p><span class="fr">2. Concevoir un prototype 100% fonctionnel</span><span class="en">2. Design a 100% functional prototype</span></p>
-            <p><span class="fr">3. Assurer une sécurité sanitaire absolue</span><span class="en">3. Ensure absolute sanitary safety</span></p>
-            <p><span class="fr">4. Sensibiliser à l’économie d’eau</span><span class="en">4. Raise awareness about water saving</span></p>
+        <div class="card" style="overflow-x: auto; max-width: 900px; margin: auto; padding: 0;">
+            <table class="compare-table">
+                <thead>
+                    <tr>
+                        <th><span class="fr">Caractéristique</span><span class="en">Feature</span></th>
+                        <th><span class="fr">Douche Standard</span><span class="en">Standard Shower</span></th>
+                        <th class="highlight-col"><span class="fr">Cabine AQUOS</span><span class="en">AQUOS Cabin</span></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><b><span class="fr">Débit du réseau d'eau</span><span class="en">Mains water flow</span></b></td>
+                        <td><span class="fr">10 à 12 Litres / min</span><span class="en">10 to 12 Liters / min</span></td>
+                        <td class="highlight-col"><b><span class="fr">Circuit fermé (100% recyclé)</span><span class="en">Closed loop (100% recycled)</span></b></td>
+                    </tr>
+                    <tr>
+                        <td><b><span class="fr">Volume total (douche 10 min)</span><span class="en">Total volume (10 min shower)</span></b></td>
+                        <td><span class="fr">100 à 120 Litres</span><span class="en">100 to 120 Liters</span></td>
+                        <td class="highlight-col"><b><span class="fr">20 à 30 Litres max</span><span class="en">20 to 30 Liters max</span></b></td>
+                    </tr>
+                    <tr>
+                        <td><b><span class="fr">Besoins thermiques</span><span class="en">Thermal needs</span></b></td>
+                        <td><span class="fr">Chauffe-eau (100% d'eau froide à chauffer)</span><span class="en">Water heater (heating 100% cold water)</span></td>
+                        <td class="highlight-col"><b><span class="fr">Résistance d'appoint (maintien à 38°C)</span><span class="en">Auxiliary heater (maintains at 38°C)</span></b></td>
+                    </tr>
+                    <tr>
+                        <td><b><span class="fr">Filtration & Stérilisation</span><span class="en">Filtration & Sterilization</span></b></td>
+                        <td><span class="fr">Aucune (rejet direct égouts)</span><span class="en">None (direct drain to sewer)</span></td>
+                        <td class="highlight-col"><b><span class="fr">Filtres mécaniques + Lampe UV-C</span><span class="en">Mechanical filters + UV-C Lamp</span></b></td>
+                    </tr>
+                    <tr>
+                        <td><b><span class="fr">Impact Environnemental</span><span class="en">Environmental Impact</span></b></td>
+                        <td><span class="fr">Élevé 🔴</span><span class="en">High 🔴</span></td>
+                        <td class="highlight-col"><b><span class="fr">Faible (Éco-conçu) 🟢</span><span class="en">Low (Eco-designed) 🟢</span></b></td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
     </section>
 
-    <section id="contact" style="background: white;">
-        <div class="contact-box">
-            <h2>Contact</h2>
-            <p><span class="fr">Une question sur notre projet étudiant ?</span><span class="en">A question about our student project?</span></p>
-            <p style="margin-top: 10px; font-weight: bold;">📧 contact.aquos@email.com</p>
-            <a href="https://github.com/ton-github" class="btn" target="_blank">
-                <span class="fr">Voir le code sur GitHub</span><span class="en">View code on GitHub</span>
-            </a>
-        </div>
-    </section>
-
+    <!-- ================= TABLEAU DE BORD EN DIRECT ================= -->
     <section id="dashboard">
         <h2>
             <span class="fr">Tableau de Bord en Direct</span>
@@ -212,45 +212,189 @@
             </div>
 
             <div class="dash-card">
-                <div class="dash-title"><span class="fr">Température (DS18B20)</span><span class="en">Temperature</span></div>
-                <div class="dash-value" id="val-temp">-- °C</div>
-                <div class="dash-status status-neutral" id="stat-temp">
-                    <span class="fr">-</span><span class="en">-</span>
-                </div>
-            </div>
-
-            <div class="dash-card">
                 <div class="dash-title"><span class="fr">Turbidité (Clarté)</span><span class="en">Turbidity (Clarity)</span></div>
                 <div class="dash-value" id="val-turb">-- NTU</div>
-                <div class="dash-status status-neutral" id="stat-turb">
-                    <span class="fr">-</span><span class="en">-</span>
-                </div>
+                <div class="dash-status status-neutral" id="stat-turb">--</div>
             </div>
 
             <div class="dash-card">
                 <div class="dash-title"><span class="fr">TDS (Pureté)</span><span class="en">TDS (Purity)</span></div>
                 <div class="dash-value" id="val-tds">-- ppm</div>
-                <div class="dash-status status-neutral" id="stat-tds">
-                    <span class="fr">-</span><span class="en">-</span>
+                <div class="dash-status status-neutral" id="stat-tds">--</div>
+            </div>
+
+            <div class="dash-card">
+                <div class="dash-title"><span class="fr">Température (DS18B20)</span><span class="en">Temperature</span></div>
+                <div class="thermo-wrapper">
+                    <div class="thermo-gauge">
+                        <div class="thermo-tube">
+                            <div class="thermo-liquid" id="thermo-liquid"></div>
+                        </div>
+                        <div class="thermo-bulb" id="thermo-bulb"></div>
+                    </div>
                 </div>
+                <div class="dash-value" id="val-temp">-- °C</div>
+                <div class="dash-status status-neutral" id="stat-temp">--</div>
             </div>
 
             <div class="dash-card">
                 <div class="dash-title"><span class="fr">Puissance Pompe</span><span class="en">Pump Power</span></div>
-                <div class="dash-value" id="val-pump">-- %</div>
-                <div class="dash-status status-neutral" id="stat-pump">
-                    <span class="fr">-</span><span class="en">-</span>
+                <div class="gauge-wrapper">
+                    <div class="gauge-body">
+                        <div class="gauge-fill"></div>
+                        <div class="gauge-cover"></div>
+                        <div class="gauge-needle" id="pump-needle"></div>
+                    </div>
+                    <div class="gauge-center"></div>
                 </div>
+                <div class="dash-value" id="val-pump">-- %</div>
+                <div class="dash-status status-neutral" id="stat-pump">--</div>
             </div>
 
             <div class="dash-card">
                 <div class="dash-title"><span class="fr">Stérilisation UV</span><span class="en">UV Sterilization</span></div>
-                <div class="dash-value" id="val-uv">--</div>
-                <div class="dash-status status-neutral" id="stat-uv">
-                    <span class="fr">-</span><span class="en">-</span>
+                <div class="toggle-wrapper">
+                    <div class="toggle-switch" id="uv-switch">
+                        <div class="toggle-knob"></div>
+                    </div>
                 </div>
+                <div class="dash-value" id="val-uv" style="display: none;">--</div>
+                <div class="dash-status status-neutral" id="stat-uv">--</div>
             </div>
         </div>
     </section>
+
+    <!-- ================= CONSOLE DE GRAPHIQUES INTERACTIFS ================= -->
+    <section id="analyse" style="background: var(--light); padding-top: 40px;">
+        <h2>
+            <span class="fr">📊 Analyse d'un Cycle de Douche</span>
+            <span class="en">📊 Shower Cycle Analysis</span>
+        </h2>
+        <div class="card" style="max-width: 900px; margin: auto; padding: 20px;">
+            <canvas id="showerChart"></canvas>
+        </div>
+    </section>
+
+    <!-- ================= ARCHITECTURE RÉSEAU IOT ================= -->
+    <section id="architecture" style="background: white;">
+        <h2>
+            <span class="fr">🌐 Architecture Réseau & Parcours de la Donnée</span>
+            <span class="en">🌐 Network Architecture & Data Flow</span>
+        </h2>
+        <p style="text-align: center; margin-bottom: 40px; color: #666; max-width: 800px; margin-left: auto; margin-right: auto;">
+            <span class="fr">Découvrez comment les mesures physiques de la cabine AQUOS traversent le réseau en temps réel pour alimenter cette interface web.</span>
+            <span class="en">Discover how physical measurements from the AQUOS cabin travel through the network in real-time to power this web interface.</span>
+        </p>
+
+        <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));">
+            <div class="card" style="border-top: 4px solid #0077b6; text-align: center;">
+                <div style="font-size: 2rem; margin-bottom: 10px;">🔌</div>
+                <h3><span class="fr">1. Collecte Locale</span><span class="en">1. Local Collection</span></h3>
+                <p style="font-size: 0.9rem; color: #555; margin-top: 10px;">
+                    <span class="fr">L'<b>ESP32 Nano</b> interroge les capteurs (DS18B20, TDS, Turbidité) via les bus de communication (OneWire, Analogique).</span>
+                    <span class="en">The <b>ESP32 Nano</b> queries sensors (DS18B20, TDS, Turbidity) via communication buses (OneWire, Analog).</span>
+                </p>
+            </div>
+
+            <div class="card" style="border-top: 4px solid #00b4d8; text-align: center;">
+                <div style="font-size: 2rem; margin-bottom: 10px;">📡</div>
+                <h3><span class="fr">2. Émission Wi-Fi</span><span class="en">2. Wi-Fi Transmission</span></h3>
+                <p style="font-size: 0.9rem; color: #555; margin-top: 10px;">
+                    <span class="fr">Les données sont packagées dans une chaîne de caractères (CSV) et envoyées sans fil via des requêtes <b>HTTP POST / MQTT</b>.</span>
+                    <span class="en">Data is packaged into a string (CSV) and transmitted wirelessly via <b>HTTP POST / MQTT</b> requests.</span>
+                </p>
+            </div>
+
+            <div class="card" style="border-top: 4px solid #7209b7; text-align: center;">
+                <div style="font-size: 2rem; margin-bottom: 10px;">☁️</div>
+                <h3><span class="fr">3. Serveur Cloud</span><span class="en">3. Cloud Broker</span></h3>
+                <p style="font-size: 0.9rem; color: #555; margin-top: 10px;">
+                    <span class="fr">Le serveur <b>Adafruit IO</b> reçoit le flux, l'historise et le met à disposition instantanément via son API REST publique.</span>
+                    <span class="en">The <b>Adafruit IO</b> server receives the stream, logs it, and makes it instantly available via its public REST API.</span>
+                </p>
+            </div>
+
+            <div class="card" style="border-top: 4px solid #20c997; text-align: center;">
+                <div style="font-size: 2rem; margin-bottom: 10px;">💻</div>
+                <h3><span class="fr">4. Interface Web</span><span class="en">4. Web Interface</span></h3>
+                <p style="font-size: 0.9rem; color: #555; margin-top: 10px;">
+                    <span class="fr">Notre script JavaScript exécute un <b>Fetch asynchrone</b> toutes les 3s, découpe la chaîne et anime nos jauges CSS.</span>
+                    <span class="en">Our JavaScript runs an asynchronous <b>Fetch request</b> every 3s, splits the string, and animates our CSS gauges.</span>
+                </p>
+            </div>
+        </div>
+
+        <div class="card" style="margin-top: 30px; background: #f8f9fa; border: 1px dashed #ccc; text-align: center; font-family: monospace; font-size: 0.95rem; padding: 15px;">
+            <span class="fr"><b>CAPTEURS PHYSIQUES</b> ➔ ESP32 Nano ➔ Point d'Accès Wi-Fi ➔ Internet ➔ Adafruit IO Cloud ➔ <b>CETTE PAGE WEB (Client REST)</b></span>
+            <span class="en"><b>PHYSICAL SENSORS</b> ➔ ESP32 Nano ➔ Wi-Fi Access Point ➔ Internet ➔ Adafruit IO Cloud ➔ <b>THIS WEB PAGE (REST Client)</b></span>
+        </div>
+    </section>
+
+    <!-- ================= L'ÉQUIPE ================= -->
+    <section id="equipe" style="background: white;">
+        <h2>
+            <span class="fr">Le Projet & L'Équipe</span>
+            <span class="en">Project & Team</span>
+        </h2>
+        <div class="grid" style="margin-bottom: 50px;">
+            <div class="card team-member" style="display: flex; flex-direction: column; align-items: center;">
+                <h3>Prénom 1</h3>
+                <p><b><span class="fr">Électronique</span><span class="en">Electronics</span></b></p>
+                <p style="margin-bottom: auto;"><span class="fr">Conception du cerveau ESP32 et sécurité du système.</span><span class="en">Design of the ESP32 brain and system security.</span></p>
+            </div>
+            <div class="card team-member" style="display: flex; flex-direction: column; align-items: center;">
+                <h3>Prénom 2</h3>
+                <p><b><span class="fr">Filtration</span><span class="en">Filtration</span></b></p>
+                <p style="margin-bottom: auto;"><span class="fr">Gestion du traitement de l'eau et de l'UV-C.</span><span class="en">Management of water treatment and UV-C.</span></p>
+            </div>
+            <div class="card team-member" style="display: flex; flex-direction: column; align-items: center;">
+                <h3>Prénom 3</h3>
+                <p><b><span class="fr">Logiciel</span><span class="en">Software</span></b></p>
+                <p style="margin-bottom: auto;"><span class="fr">Programmation des capteurs et de l'interface.</span><span class="en">Programming of sensors and interface.</span></p>
+            </div>
+            <div class="card team-member" style="display: flex; flex-direction: column; align-items: center;">
+                <h3>Prénom 4</h3>
+                <p><b><span class="fr">Électronique</span><span class="en">Electronics</span></b></p>
+                <p style="margin-bottom: auto;"><span class="fr">Conception du cerveau ESP32 et sécurité du système.</span><span class="en">Design of the ESP32 brain and system security.</span></p>
+            </div>
+            <div class="card team-member" style="display: flex; flex-direction: column; align-items: center;">
+                <h3>Prénom 5</h3>
+                <p><b><span class="fr">Filtration</span><span class="en">Filtration</span></b></p>
+                <p style="margin-bottom: auto;"><span class="fr">Gestion du traitement de l'eau et de l'UV-C.</span><span class="en">Management of water treatment and UV-C.</span></p>
+            </div>
+            <div class="card team-member" style="display: flex; flex-direction: column; align-items: center;">
+                <h3>Prénom 6</h3>
+                <p><b><span class="fr">Logiciel</span><span class="en">Software</span></b></p>
+                <p style="margin-bottom: auto;"><span class="fr">Programmation des capteurs et de l'interface.</span><span class="en">Programming of sensors and interface.</span></p>
+            </div>
+        </div>
+
+        <div class="card" style="text-align: center;">
+            <h3 style="color: var(--primary); margin-bottom: 15px;">🎯 <span class="fr">Nos Objectifs</span><span class="en">Our Objectives</span></h3>
+            <p><span class="fr">1. Réduire la consommation domestique</span><span class="en">1. Reduce domestic consumption</span></p>
+            <p><span class="fr">2. Concevoir un prototype 100% fonctionnel</span><span class="en">2. Design a 100% functional prototype</span></p>
+            <p><span class="fr">3. Assurer une sécurité sanitaire absolue</span><span class="en">3. Ensure absolute sanitary safety</span></p>
+            <p><span class="fr">4. Sensibiliser à l’économie d’eau</span><span class="en">4. Raise awareness about water saving</span></p>
+        </div>
+    </section>
+
+    <!-- ================= CONTACT ================= -->
+    <section id="contact">
+        <div class="contact-box" style="display: flex; flex-direction: column; align-items: center;">
+            <h2>Contact</h2>
+            <p><span class="fr">Une question sur notre projet étudiant ?</span><span class="en">A question about our student project?</span></p>
+            <p style="margin-top: 10px; font-weight: bold;">📧 contact.aquos@email.com</p>
+            
+            <div style="margin-top: 20px; display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;">
+                <a href="https://github.com/ton-github" class="btn btn-git" target="_blank">
+                    <i class="fa-brands fa-github"></i> GitHub
+                </a>
+                <a href="https://instagram.com/ton-instagram-projet" class="btn btn-insta" target="_blank">
+                    <i class="fa-brands fa-instagram"></i> Instagram
+                </a>
+            </div>
+        </div>
+    </section>
+
 </body>
 </html>

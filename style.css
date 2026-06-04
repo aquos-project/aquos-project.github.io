@@ -47,11 +47,30 @@ nav {
     margin: auto; 
 }
 
-.logo { 
-    color: var(--white); 
-    font-size: 1.5rem; 
-    font-weight: bold; 
-    text-decoration: none; 
+/* Conteneur global du logo et du texte */
+.logo-container {
+    display: flex;
+    align-items: center;
+    gap: 12px; 
+    text-decoration: none;
+}
+
+/* Transformation de l'image en cercle parfait */
+.nav-logo {
+    height: 45px;
+    width: 45px;
+    object-fit: contain; 
+    border-radius: 50%; 
+    border: 2px solid var(--white); 
+    display: block;
+}
+
+/* Style du texte AQUOS juste à côté */
+.logo-text {
+    color: var(--white);
+    font-size: 1.5rem;
+    font-weight: bold;
+    letter-spacing: 1px;
 }
 
 .nav-links { 
@@ -168,6 +187,40 @@ h1 {
     font-size: 1.3rem;
 }
 
+/* ================= TABLEAU COMPARATIF ================= */
+.compare-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+}
+.compare-table th, .compare-table td {
+    padding: 18px 20px;
+    border-bottom: 1px solid #eaeaea;
+}
+.compare-table th {
+    background-color: #f1f3f5;
+    color: var(--dark);
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+.compare-table .highlight-col {
+    background-color: rgba(0, 180, 216, 0.08);
+    color: var(--primary);
+}
+.compare-table th.highlight-col {
+    background-color: var(--primary);
+    color: white;
+}
+.compare-table tr:last-child td {
+    border-bottom: none;
+}
+.compare-table tr:hover td {
+    background-color: #f8f9fa;
+}
+.compare-table tr:hover td.highlight-col {
+    background-color: rgba(0, 180, 216, 0.15);
+}
+
 /* ================= DASHBOARD CARTES ================= */
 .dashboard-grid {
     display: grid;
@@ -178,11 +231,15 @@ h1 {
 
 .dash-card {
     background: var(--white);
-    padding: 20px;
+    padding: 25px 20px;
     border-radius: 12px;
     box-shadow: var(--card-shadow);
     text-align: center;
     transition: transform 0.3s;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .dash-card:hover {
@@ -217,20 +274,6 @@ h1 {
 .status-alert { background-color: #ff4d4d; }
 .status-neutral { background-color: var(--secondary); }
 
-.iframe-placeholder {
-    width: 100%;
-    height: 400px;
-    background: #e9ecef;
-    border: 2px dashed #ccc;
-    border-radius: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #666;
-    text-align: center;
-    padding: 20px;
-}
-
 /* ================= ÉQUIPE & CONTACT ================= */
 .team-member { 
     text-align: center; 
@@ -247,103 +290,218 @@ h1 {
     border-radius: 12px; 
 }
 
+/* ================= BOUTONS (MÊME TAILLE ET CENTRAGE) ================= */
 .btn { 
-    display: inline-block; 
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    width: 200px; /* Largeur fixe pour que les boutons fassent la même taille */
     background: var(--primary); 
     color: white; 
-    padding: 10px 25px; 
+    padding: 12px 25px; 
     text-decoration: none; 
-    border-radius: 25px; 
+    border-radius: 30px; 
     margin-top: 15px; 
+    font-weight: bold;
+    font-size: 1.05rem;
+}
+
+.btn i {
+    margin-right: 10px; /* Espace propre entre l'icône et le texte */
+    font-size: 1.3rem; 
+}
+
+.btn-git {
+    background-color: #24292e !important; 
+    transition: background 0.3s;
+}
+.btn-git:hover {
+    background-color: #555 !important;
+}
+
+.btn-insta {
+    background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%) !important;
+    border: none;
+    transition: opacity 0.3s;
+}
+.btn-insta:hover {
+    opacity: 0.85;
+}
+
+/* ================= WIDGET 1 : THERMOMÈTRE VISUEL ANIMÉ ================= */
+.thermo-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px 0;
+    height: 85px; 
+}
+.thermo-gauge {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+}
+.thermo-tube {
+    width: 16px;
+    height: 55px; 
+    background: #e9ecef;
+    border: 2px solid #ced4da;
+    border-bottom: none;
+    border-radius: 10px 10px 0 0;
+    position: relative;
+    overflow: hidden;
+    box-shadow: inset 2px 0 5px rgba(0,0,0,0.05);
+}
+.thermo-liquid {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 0%;
+    background-color: #0077b6; 
+    transition: height 0.6s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.4s ease;
+}
+.thermo-bulb {
+    width: 28px;
+    height: 28px;
+    background-color: #0077b6;
+    border: 2px solid #ced4da;
+    border-radius: 50%;
+    margin-top: -5px; 
+    z-index: 2;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1), inset 2px 2px 4px rgba(255,255,255,0.3);
+    transition: background-color 0.4s ease;
+}
+
+/* ================= WIDGET 2 : INTERRUPTEUR UV (TOGGLE) ================= */
+.toggle-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 15px 0;
+    height: 40px;
+}
+.toggle-switch {
+    width: 60px;
+    height: 30px;
+    background-color: #ccc;
+    border-radius: 30px;
+    position: relative;
+    transition: background-color 0.4s;
+    box-shadow: inset 0 2px 5px rgba(0,0,0,0.2);
+}
+.toggle-knob {
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    width: 24px;
+    height: 24px;
+    background-color: white;
+    border-radius: 50%;
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+}
+.toggle-switch.active {
+    background-color: #20c997; 
+}
+.toggle-switch.active .toggle-knob {
+    transform: translateX(30px); 
+}
+
+/* ================= WIDGET 3 : JAUGE POMPE (AIGUILLE) ================= */
+.gauge-wrapper {
+    position: relative;
+    width: 120px;
+    height: 60px; 
+    margin: 15px auto 10px auto;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+}
+.gauge-body {
+    width: 120px;
+    height: 60px;
+    background: #e9ecef;
+    border-top-left-radius: 120px;
+    border-top-right-radius: 120px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: inset 0 3px 5px rgba(0,0,0,0.1);
+}
+.gauge-fill {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 200%;
+    background: conic-gradient(from -90deg at 50% 50%, #20c997 0deg, #ffb300 90deg, #ff4d4d 180deg);
+    opacity: 0.2;
+}
+.gauge-cover {
+    width: 90px;
+    height: 45px;
+    background: var(--white);
+    border-top-left-radius: 90px;
+    border-top-right-radius: 90px;
+    position: absolute;
+    bottom: 0;
+    left: 15px;
+    box-shadow: 0 -2px 5px rgba(0,0,0,0.05);
+}
+.gauge-needle {
+    width: 4px;
+    height: 55px;
+    background: #dc3545; 
+    position: absolute;
+    bottom: 0;
+    left: 58px;
+    transform-origin: bottom center;
+    transform: rotate(-90deg); 
+    border-radius: 4px 4px 0 0;
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 2;
+}
+.gauge-center {
+    width: 16px;
+    height: 16px;
+    background: #333;
+    border-radius: 50%;
+    position: absolute;
+    bottom: -8px;
+    z-index: 3;
 }
 
 /* ================= AJUSTEMENTS ULTRA-COMPACTS POUR MOBILE 📱 ================= */
 @media (max-width: 768px) {
-    nav {
-        flex-direction: column;
-        gap: 6px;
-        padding: 8px 5%;
-    }
+    nav { flex-direction: column; gap: 6px; padding: 8px 5%; }
+    
+    /* Correction du logo sur mobile */
+    .logo-container { justify-content: center; }
+    .nav-logo { height: 38px; width: 38px; }
+    .logo-text { font-size: 1.2rem; }
 
-    .logo {
-        font-size: 1.2rem;
+    .nav-links { gap: 8px; flex-wrap: wrap; justify-content: center; }
+    .nav-links a { font-size: 0.75rem; }
+    .lang-btn { padding: 2px 8px; font-size: 0.7rem; }
+    section { padding-top: 110px; padding-bottom: 25px; }
+    h1 { font-size: 1.5rem; }
+    .subtitle { font-size: 0.95rem; }
+    .highlight-box { font-size: 1rem; padding: 10px 15px; }
+    h2 { font-size: 1.4rem; margin-bottom: 20px; }
+    .step-box { padding: 12px 15px; margin-bottom: 10px; }
+    .step-box h3 { font-size: 1rem; margin-bottom: 4px; }
+    .step-box p { font-size: 0.85rem; }
+    
+    /* Tableau comparatif mobile */
+    .compare-table th, .compare-table td {
+        padding: 12px 10px;
+        font-size: 0.85rem;
     }
-
-    .nav-links {
-        gap: 8px;
-        flex-wrap: wrap;
-        justify-content: center;
-    }
-
-    .nav-links a {
-        font-size: 0.75rem; /* Menu beaucoup plus petit */
-    }
-
-    .lang-btn {
-        padding: 2px 8px;
-        font-size: 0.7rem;
-    }
-
-    section {
-        padding-top: 110px; /* Moins d'espace perdu en haut */
-        padding-bottom: 25px;
-    }
-
-    h1 {
-        font-size: 1.5rem; 
-    }
-
-    .subtitle {
+    .compare-table th {
         font-size: 0.95rem;
     }
-
-    .highlight-box {
-        font-size: 1rem;
-        padding: 10px 15px;
-    }
-
-    h2 {
-        font-size: 1.4rem;
-        margin-bottom: 20px;
-    }
-
-    /* Ajustement des boîtes d'étapes de fonctionnement */
-    .step-box {
-        padding: 12px 15px; /* Moins de vide autour du texte */
-        margin-bottom: 10px;
-    }
-
-    .step-box h3 {
-        font-size: 1rem; /* Titres d'étapes plus fins */
-        margin-bottom: 4px;
-    }
-
-    .step-box p {
-        font-size: 0.85rem; /* Textes d'étapes compacts */
-    }
-
-    /* Le dashboard 2 colonnes bien proportionné */
-    .dashboard-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 8px;
-        margin-bottom: 25px;
-    }
-
-    .dash-card {
-        padding: 12px 5px;
-    }
-
-    .dash-title {
-        font-size: 0.65rem;
-        margin-bottom: 5px;
-    }
-
-    .dash-value {
-        font-size: 1.2rem;
-    }
-
-    .dash-status {
-        font-size: 0.65rem;
-        padding: 2px 6px;
-    }
+    
+    .dashboard-grid { grid-template-columns: repeat(2, 1fr); gap: 8px; margin-bottom: 25px; }
+    .dash-card { padding: 15px 5px; }
+    .dash-title { font-size: 0.65rem; margin-bottom: 5px; }
+    .dash-value { font-size: 1.2rem; }
+    .dash-status { font-size: 0.65rem; padding: 2px 6px; }
 }
