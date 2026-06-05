@@ -255,35 +255,77 @@ function initialiserGraphique() {
     });
 }
 
-// --- 4. ANIMATION DES VIDÉOS D'ACCUEIL (FONDU ENCHAÎNÉ) ---
+// --- 4. ANIMATION DES VIDÉOS D'ACCUEIL ---
 function initialiserVideosAccueil() {
     const video1 = document.getElementById('bg-video-1');
     const video2 = document.getElementById('bg-video-2');
     
     if (!video1 || !video2) return;
 
-    // Change la vidéo visible toutes les 10 secondes
     setInterval(() => {
-        // 1. On intervertit les classes pour lancer le fondu CSS
         video1.classList.toggle('video-active');
         video2.classList.toggle('video-active');
 
-        // 2. On vérifie laquelle vient de devenir active pour la forcer à démarrer à 0s
         if (video1.classList.contains('video-active')) {
-            video1.currentTime = 0; // Remet la vidéo 1 au tout début
-            video1.play();          // Force la lecture au cas où
+            video1.currentTime = 0; 
+            video1.play().catch(error => console.log("Lecture vidéo 1 suspendue par le navigateur"));          
         } else {
-            video2.currentTime = 0; // Remet la vidéo 2 au tout début
-            video2.play();          // Force la lecture au cas où
+            video2.currentTime = 0; 
+            video2.play().catch(error => console.log("Lecture vidéo 2 suspendue par le navigateur"));          
         }
     }, 10000); 
 }
 
-// Initialisations globales au chargement de la page
+// --- 5. LOGIQUE DU SIMULATEUR D'ÉCONOMIES ---
+function initialiserSimulateur() {
+    const inputPeople = document.getElementById('sim-people');
+    const inputTime = document.getElementById('sim-time');
+    const valPeople = document.getElementById('sim-people-val');
+    const valTime = document.getElementById('sim-time-val');
+    const resLiters = document.getElementById('res-liters');
+    const resEuros = document.getElementById('res-euros');
+
+    if(!inputPeople || !inputTime) return;
+
+    function calculateSavings() {
+        const people = parseInt(inputPeople.value);
+        const time = parseInt(inputTime.value);
+        
+        valPeople.innerText = people;
+        valTime.innerText = time;
+
+        const litersPerYear = Math.round(people * time * 12 * 365 * 0.7);
+        const eurosPerYear = Math.round(litersPerYear * 0.007);
+
+        resLiters.innerText = litersPerYear.toLocaleString('fr-FR');
+        resEuros.innerText = eurosPerYear.toLocaleString('fr-FR');
+    }
+
+    inputPeople.addEventListener('input', calculateSavings);
+    inputTime.addEventListener('input', calculateSavings);
+    calculateSavings();
+}
+
+// --- 6. LOGIQUE DE LA FAQ DÉROULANTE (ACCORDÉON) ---
+function initialiserFAQ() {
+    const faqQuestions = document.querySelectorAll('.faq-question');
+    
+    faqQuestions.forEach(btn => {
+        btn.addEventListener('click', function() {
+            this.classList.toggle('active');
+            const answer = this.nextElementSibling;
+            answer.classList.toggle('open');
+        });
+    });
+}
+
+// --- 7. INITIALISATIONS GLOBALES AU CHARGEMENT DE LA PAGE ---
 window.addEventListener('load', () => {
     recupererVraiesDonnees();
     initialiserGraphique(); 
-    initialiserVideosAccueil(); // 🚨 C'EST CETTE LIGNE QUI ALLUME LE MOTEUR DES VIDÉOS !
+    initialiserVideosAccueil(); 
+    initialiserSimulateur(); // 🚨 C'est ça qui manquait pour le simulateur !
+    initialiserFAQ();        // 🚨 C'est ça qui manquait pour allumer la FAQ !
 });
 
 // Boucle réseau

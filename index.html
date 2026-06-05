@@ -22,6 +22,7 @@
             <ul class="nav-links">
                 <li><a href="#fonctionnement"><span class="fr">Fonctionnement</span><span class="en">How it works</span></a></li>
                 <li><a href="#tech"><span class="fr">Technologie</span><span class="en">Tech</span></a></li>
+                <li><a href="#impact"><span class="fr">Impact</span><span class="en">Impact</span></a></li>
                 <li><a href="#dashboard"><span class="fr">En Direct</span><span class="en">Live</span></a></li>
                 <li><a href="#equipe"><span class="fr">L'Équipe</span><span class="en">Team</span></a></li>
                 <li><button class="lang-btn" onclick="toggleLanguage()" id="btn-lang">FR / EN</button></li>
@@ -49,8 +50,38 @@
                 <span class="en">Aquos is an innovative system that allows you to reuse shower water in real-time, while guaranteeing clean, filtered, and disinfected water.</span>
             </p>
             <div class="highlight-box">
-                <span class="fr">Objectif : Réduire la consommation d’eau jusqu’à 70 %</span>
-                <span class="en">Goal: Reduce water consumption by up to 70%</span>
+                <span class="fr">Objectif : Réduire la consommation d’eau jusqu’à 70&nbsp;%</span>
+                <span class="en">Goal: Reduce water consumption by up to 70&nbsp;%</span>
+            </div>
+        </div>
+    </section>
+
+    <section id="impact">
+        <h2><span class="fr">Notre Impact Concret</span><span class="en">Our Real Impact</span></h2>
+        <div class="impact-grid">
+            <div class="impact-card">
+                <div class="impact-icon">💧</div>
+                <div class="impact-number">45 000 L</div>
+                <p>
+                    <span class="fr">D'eau potable sauvée par an en moyenne pour une famille de 4 personnes.</span>
+                    <span class="en">Of drinking water saved per year on average for a family of 4.</span>
+                </p>
+            </div>
+            <div class="impact-card">
+                <div class="impact-icon">🧴</div>
+                <div class="impact-number">120</div>
+                <p>
+                    <span class="fr">Bouteilles d'eau (1.5L) préservées virtuellement à chaque douche prise.</span>
+                    <span class="en">Water bottles (1.5L) virtually preserved during each shower taken.</span>
+                </p>
+            </div>
+            <div class="impact-card">
+                <div class="impact-icon">⚡</div>
+                <div class="impact-number">- 60 %</div>
+                <p>
+                    <span class="fr">D'énergie économisée : l'eau recyclée étant déjà chaude, le chauffe-eau se repose.</span>
+                    <span class="en">Energy saved: since the recycled water is already hot, the heater rests.</span>
+                </p>
             </div>
         </div>
     </section>
@@ -80,6 +111,36 @@
             <div class="step-box" style="border-color: var(--primary);">
                 <h3><span class="fr">5. Tout est automatique</span><span class="en">5. Everything is automatic</span></h3>
                 <p><span class="fr">Une carte électronique surveille l'eau en permanence. L’utilisateur ne fait… rien.</span><span class="en">An electronic board monitors the water constantly. The user does... nothing.</span></p>
+            </div>
+        </div>
+    </section>
+
+    <section id="filtration" style="background: var(--light);">
+        <h2><span class="fr">Comment l'eau est-elle purifiée ?</span><span class="en">How is the water purified?</span></h2>
+        <div class="filter-container">
+            <div class="filter-step">
+                <div class="step-circle">1</div>
+                <h3><span class="fr">Filtre Mécanique</span><span class="en">Mechanical Filter</span></h3>
+                <p class="step-desc">
+                    <span class="fr">Une grille fine qui retient immédiatement les cheveux, grosses particules et résidus de savon.</span>
+                    <span class="en">A fine grid that immediately catches hair, large particles, and soap residue.</span>
+                </p>
+            </div>
+            <div class="filter-step">
+                <div class="step-circle">2</div>
+                <h3><span class="fr">Charbon Actif</span><span class="en">Active Carbon</span></h3>
+                <p class="step-desc">
+                    <span class="fr">Une cartouche haute performance qui élimine les mauvaises odeurs et les micro-polluants.</span>
+                    <span class="en">A high-performance cartridge that eliminates bad odors and micro-pollutants.</span>
+                </p>
+            </div>
+            <div class="filter-step">
+                <div class="step-circle">3</div>
+                <h3><span class="fr">Lampe UV-C</span><span class="en">UV-C Lamp</span></h3>
+                <p class="step-desc">
+                    <span class="fr">Stérilisation instantanée : la lumière ultraviolette détruit 99,9 % des bactéries et virus.</span>
+                    <span class="en">Instant sterilization: ultraviolet light destroys 99.9% of bacteria and viruses.</span>
+                </p>
             </div>
         </div>
     </section>
@@ -332,6 +393,102 @@
         </div>
     </section>
 
+    <section id="simulateur" style="background: white;">
+        <h2>
+            <span class="fr">Calculez vos Économies</span>
+            <span class="en">Calculate Your Savings</span>
+        </h2>
+        <div class="card" style="max-width: 800px; margin: auto; padding: 40px;">
+            <div style="display: flex; flex-direction: column; gap: 30px; margin-bottom: 30px;">
+                <div>
+                    <label style="font-size: 1.1rem; font-weight: bold; margin-bottom: 10px; display: block;">
+                        <span class="fr">Nombre de personnes dans le foyer : </span>
+                        <span class="en">Number of people in the household: </span>
+                        <span id="sim-people-val" style="color: var(--secondary); font-size: 1.4rem;">2</span>
+                    </label>
+                    <input type="range" id="sim-people" class="sim-slider" min="1" max="8" value="2" step="1">
+                </div>
+                <div>
+                    <label style="font-size: 1.1rem; font-weight: bold; margin-bottom: 10px; display: block;">
+                        <span class="fr">Temps moyen sous la douche : </span>
+                        <span class="en">Average shower time: </span>
+                        <span id="sim-time-val" style="color: var(--secondary); font-size: 1.4rem;">10</span> min
+                    </label>
+                    <input type="range" id="sim-time" class="sim-slider" min="3" max="25" value="10" step="1">
+                </div>
+            </div>
+
+            <div style="text-align: center; border-top: 2px dashed #eee; padding-top: 30px;">
+                <p style="font-size: 1.2rem; margin-bottom: 20px; color: #555;">
+                    <span class="fr">Avec AQUOS, votre foyer économiserait chaque année :</span>
+                    <span class="en">With AQUOS, your household would save every year:</span>
+                </p>
+                <div style="display: flex; justify-content: space-around; flex-wrap: wrap; gap: 20px;">
+                    <div>
+                        <div id="res-liters" style="font-size: 3.5rem; font-weight: bold; color: var(--primary); line-height: 1;">0</div>
+                        <div style="color: #888; text-transform: uppercase; font-weight: bold; margin-top: 5px;">
+                            <span class="fr">Litres d'eau</span><span class="en">Liters of water</span>
+                        </div>
+                    </div>
+                    <div>
+                        <div id="res-euros" style="font-size: 3.5rem; font-weight: bold; color: #20c997; line-height: 1;">0</div>
+                        <div style="color: #888; text-transform: uppercase; font-weight: bold; margin-top: 5px;">
+                            Euros (€)
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="faq" style="background: var(--light);">
+        <h2>
+            <span class="fr">Questions Fréquentes</span>
+            <span class="en">Frequently Asked Questions</span>
+        </h2>
+        <div style="max-width: 800px; margin: auto;">
+            <div class="faq-item">
+                <button class="faq-question">
+                    <span class="fr">L'eau recyclée est-elle vraiment hygiénique ?</span>
+                    <span class="en">Is recycled water really hygienic?</span>
+                    <i class="fa-solid fa-chevron-down"></i>
+                </button>
+                <div class="faq-answer">
+                    <p>
+                        <span class="fr">Oui, absolument. L'eau passe d'abord par une filtration mécanique, puis par un filtre à charbon actif, et enfin devant une lampe UV-C de qualité médicale qui détruit 99,9 % des bactéries et virus instantanément.</span>
+                        <span class="en">Yes, absolutely. The water first passes through mechanical filtration, then an active carbon filter, and finally a medical-grade UV-C lamp that destroys 99.9% of bacteria and viruses instantly.</span>
+                    </p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question">
+                    <span class="fr">Que se passe-t-il si les filtres sont saturés ?</span>
+                    <span class="en">What happens if the filters are saturated?</span>
+                    <i class="fa-solid fa-chevron-down"></i>
+                </button>
+                <div class="faq-answer">
+                    <p>
+                        <span class="fr">Le système est intelligent. Grâce à ses capteurs (Turbidité et TDS), AQUOS détecte si l'eau n'est plus filtrée. L'alerte se déclenche, le recyclage s'arrête, et le système bascule automatiquement sur l'eau du réseau classique.</span>
+                        <span class="en">The system is smart. Using its sensors (Turbidity and TDS), AQUOS detects if the water is no longer filtered. An alert is triggered, recycling stops, and the system automatically switches to the standard water grid.</span>
+                    </p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question">
+                    <span class="fr">Est-ce que le système demande beaucoup d'entretien ?</span>
+                    <span class="en">Does the system require a lot of maintenance?</span>
+                    <i class="fa-solid fa-chevron-down"></i>
+                </button>
+                <div class="faq-answer">
+                    <p>
+                        <span class="fr">Non. L'entretien se limite à vider la grille du premier filtre occasionnellement. La cartouche de charbon actif se remplace tous les 6 mois, et la lampe UV dure plusieurs années. Le nettoyage de l'eau est 100% automatisé.</span>
+                        <span class="en">No. Maintenance is limited to occasionally emptying the first filter's grid. The active carbon cartridge is replaced every 6 months, and the UV lamp lasts for years. Water cleaning is 100% automated.</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <section id="equipe" style="background: white;">
         <h2>
             <span class="fr">Le Projet & L'Équipe</span>
@@ -342,49 +499,31 @@
                 <h3>Prénom 1</h3>
                 <p><b><span class="fr">Électronique</span><span class="en">Electronics</span></b></p>
                 <p style="margin-bottom: auto;"><span class="fr">Conception du cerveau ESP32 et sécurité du système.</span><span class="en">Design of the ESP32 brain and system security.</span></p>
-                <a href="https://instagram.com/pseudo1" class="btn btn-insta" target="_blank" style="margin-top: 15px;">
-                    <i class="fa-brands fa-instagram"></i> Instagram
-                </a>
             </div>
             <div class="card team-member" style="display: flex; flex-direction: column; align-items: center;">
                 <h3>Prénom 2</h3>
                 <p><b><span class="fr">Filtration</span><span class="en">Filtration</span></b></p>
                 <p style="margin-bottom: auto;"><span class="fr">Gestion du traitement de l'eau et de l'UV-C.</span><span class="en">Management of water treatment and UV-C.</span></p>
-                <a href="https://instagram.com/pseudo2" class="btn btn-insta" target="_blank" style="margin-top: 15px;">
-                    <i class="fa-brands fa-instagram"></i> Instagram
-                </a>
             </div>
             <div class="card team-member" style="display: flex; flex-direction: column; align-items: center;">
                 <h3>Prénom 3</h3>
                 <p><b><span class="fr">Logiciel</span><span class="en">Software</span></b></p>
                 <p style="margin-bottom: auto;"><span class="fr">Programmation des capteurs et de l'interface.</span><span class="en">Programming of sensors and interface.</span></p>
-                <a href="https://instagram.com/pseudo3" class="btn btn-insta" target="_blank" style="margin-top: 15px;">
-                    <i class="fa-brands fa-instagram"></i> Instagram
-                </a>
             </div>
             <div class="card team-member" style="display: flex; flex-direction: column; align-items: center;">
                 <h3>Prénom 4</h3>
                 <p><b><span class="fr">Électronique</span><span class="en">Electronics</span></b></p>
                 <p style="margin-bottom: auto;"><span class="fr">Conception du cerveau ESP32 et sécurité du système.</span><span class="en">Design of the ESP32 brain and system security.</span></p>
-                <a href="https://instagram.com/pseudo4" class="btn btn-insta" target="_blank" style="margin-top: 15px;">
-                    <i class="fa-brands fa-instagram"></i> Instagram
-                </a>
             </div>
             <div class="card team-member" style="display: flex; flex-direction: column; align-items: center;">
                 <h3>Prénom 5</h3>
                 <p><b><span class="fr">Filtration</span><span class="en">Filtration</span></b></p>
                 <p style="margin-bottom: auto;"><span class="fr">Gestion du traitement de l'eau et de l'UV-C.</span><span class="en">Management of water treatment and UV-C.</span></p>
-                <a href="https://instagram.com/pseudo5" class="btn btn-insta" target="_blank" style="margin-top: 15px;">
-                    <i class="fa-brands fa-instagram"></i> Instagram
-                </a>
             </div>
             <div class="card team-member" style="display: flex; flex-direction: column; align-items: center;">
                 <h3>Prénom 6</h3>
                 <p><b><span class="fr">Logiciel</span><span class="en">Software</span></b></p>
                 <p style="margin-bottom: auto;"><span class="fr">Programmation des capteurs et de l'interface.</span><span class="en">Programming of sensors and interface.</span></p>
-                <a href="https://instagram.com/pseudo6" class="btn btn-insta" target="_blank" style="margin-top: 15px;">
-                    <i class="fa-brands fa-instagram"></i> Instagram
-                </a>
             </div>
         </div>
 
