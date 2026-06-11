@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AQUOS - La Douche Intelligente</title>
+    
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="script.js"></script>
+</head>
+<body>
+
+    <header>
+        <nav>
+            <a href="#accueil" class="logo-container">
+                <img src="logo.jpg" alt="AQUOS Logo" class="nav-logo">
+                <span class="logo-text">AQUOS</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="#impact"><span class="fr">Impact</span><span class="en">Impact</span></a></li>
+                <li><a href="#fonctionnement"><span class="fr">Fonctionnement</span><span class="en">How it works</span></a></li>
+                <li><a href="#dashboard"><span class="fr">En Direct</span><span class="en">Live</span></a></li>
+                <li><a href="#tech"><span class="fr">Technologie</span><span class="en">Tech</span></a></li>
+                <li><a href="#equipe"><span class="fr">L'Équipe</span><span class="en">Team</span></a></li>
+                <li><button class="lang-btn" onclick="toggleLanguage()" id="btn-lang">FR / EN</button></li>
+                <li><a href="espace-utilisateur.html" class="btn-user-nav"><i class="fa-solid fa-user"></i> Espace Client</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="accueil">
+        <video autoplay muted loop playsinline class="background-video video-active" id="bg-video-1">
+            <source src="nature1.mp4" type="video/mp4">
+        </video>
+        <video autoplay muted loop playsinline class="background-video" id="bg-video-2">
+            <source src="nature2.mp4" type="video/mp4">
+        </video>
+        
+        <div class="video-overlay"></div>
+
+        <div class="accueil-content">
+            <h1>
+                <span class="fr">AQUOS — La douche qui recycle l’eau intelligemment</span>
+                <span class="en">AQUOS — The intelligently recycling shower</span>
+            </h1>
+            <p class="subtitle">
+                <span class="fr">Aquos is un système innovant qui permet de réutiliser l’eau de la douche en temps réel, tout en garantissant une eau propre, filtrée et désinfectée.</span>
+                <span class="en">Aquos is an innovative system that allows you to reuse shower water in real-time, while guaranteeing clean, filtered, and disinfected water.</span>
+            </p>
+            <div class="highlight-box">
+                <span class="fr">Objectif : Réduire la consommation d’eau jusqu’à 70 %</span>
+                <span class="en">Goal: Reduce water consumption by up to 70 %</span>
+            </div>
+        </div>
+    </section>
+
+    <section id="impact">
+        <h2><span class="fr">Notre Impact Concret</span><span class="en">Our Real Impact</span></h2>
+        <div class="impact-grid">
+            <div class="impact-card">
+                <div class="impact-icon">💧</div>
+                <div class="impact-number">45 000 L</div>
+                <p>
+                    <span class="fr">D'eau potable sauvée par an en moyenne pour une famille de 4 personnes.</span>
+                    <span class="en">Of drinking water saved per year on average for a family of 4.</span>
+                </p>
+            </div>
+            <div class="impact-card">
+                <div class="impact-icon">🧴</div>
+                <div class="impact-number">120</div>
+                <p>
+                    <span class="fr">Bouteilles d'eau (1.5L) préservées virtuellement à chaque douche prise.</span>
+                    <span class="en">Water bottles (1.5L) virtually preserved during each shower taken.</span>
+                </p>
+            </div>
+            <div class="impact-card">
+                <div class="impact-icon">⚡</div>
+                <div class="impact-number">- 60 %</div>
+                <p>
+                    <span class="fr">D'énergie économisée : l'eau recyclée étant déjà chaude, le chauffe-eau se repose.</span>
+                    <span class="en">Energy saved: since the recycled water is already hot, the heater rests.</span>
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section id="fonctionnement">
+        <h2>
+            <span class="fr">Comment ça marche ?</span>
+            <span class="en">How does it work?</span>
+        </h2>
+        <div style="max-width: 800px; margin: auto;">
+            <div class="step-box">
+                <h3><span class="fr">1. L’eau est récupérée</span><span class="en">1. Water is collected</span></h3>
+                <p><span class="fr">L’eau qui s’écoule dans la douche est collectée dans un petit réservoir.</span></p>
+            </div>
+            <div class="step-box">
+                <h3><span class="fr">2. Elle est filtrée</span><span class="en">2. It is filtered</span></h3>
+                <p><span class="fr">Elle passe dans plusieurs filtres qui retirent les cheveux, les impuretés et les particules fines.</span></p>
+            </div>
+            <div class="step-box">
+                <h3><span class="fr">3. Elle est désinfectée</span><span class="en">3. It is disinfected</span></h3>
+                <p><span class="fr">Une puissante lumière UV-C élimine les bactéries et les micro-organismes.</span></p>
+            </div>
+            <div class="step-box">
+                <h3><span class="fr">4. Elle est renvoyée propre</span><span class="en">4. It is sent back clean</span></h3>
+                <p><span class="fr">Une pompe renvoie l’eau filtrée vers la pomme de douche pour être réutilisée immédiatement.</span></p>
+            </div>
+            <div class="step-box" style="border-color: var(--primary);">
+                <h3><span class="fr">5. Tout est automatique</span><span class="en">5. Everything is automatic</span></h3>
+                <p><span class="fr">Une carte électronique surveille l'eau en permanence. L’utilisateur ne fait… rien.</span></p>
+            </div>
+        </div>
+    </section>
+
+    <section id="dashboard" style="background: var(--light);">
+        <h2>Tableau de Bord en Direct</h2>
+        <p style="text-align: center; margin-bottom: 20px; color: #666;">Interface connectée à la cabine de douche AQUOS.</p>
+
+        <div style="text-align: center; margin-bottom: 30px;">
+            <div id="carte-statut" class="dash-status-pill error-pill">
+                🔴 Système AQUOS hors ligne
+            </div>
+        </div>
+
+        <div class="dashboard-grid">
+            <div class="dash-card">
+                <div class="dash-title">MODE ACTUEL</div>
+                <div class="dash-value" id="val-mode">...</div>
+                <div class="dash-status" id="stat-mode" style="background-color: #00b4d8;">Hors tension</div>
+            </div>
+            
+            <div class="dash-card">
+                <div class="dash-title">TURBIDITÉ (CLARTÉ)</div>
+                <div class="dash-value" id="val-turb">-- <span class="unit">NTU</span></div>
+                <div class="dash-status" id="stat-turb" style="background-color: #00b4d8;">Hors tension</div>
+            </div>
+            
+            <div class="dash-card">
+                <div class="dash-title">TDS (PURETÉ)</div>
+                <div class="dash-value" id="val-tds">-- <span class="unit">ppm</span></div>
+                <div class="dash-status" id="stat-tds" style="background-color: #00b4d8;">Hors tension</div>
+            </div>
+            
+            <div class="dash-card">
+                <div class="dash-title">TEMPÉRATURE</div>
+                <div class="thermo-wrapper">
+                    <div class="thermo-tube"><div class="thermo-liquid" id="thermo-liquid"></div></div>
+                    <div class="thermo-bulb" id="thermo-bulb"></div>
+                </div>
+                <div class="dash-value" id="val-temp">-- <span class="unit">°C</span></div>
+                <div class="dash-status" id="stat-temp" style="background-color: #00b4d8;">Hors tension</div>
+            </div>
+            
+            <div class="dash-card">
+                <div class="dash-title">PUISSANCE POMPE</div>
+                <div class="gauge-wrapper">
+                    <div class="gauge-body">
+                        <div class="gauge-cover"></div>
+                        <div class="gauge-needle" id="pump-needle"></div>
+                    </div>
+                    <div class="gauge-center"></div>
+                </div>
+                <div class="dash-value" id="val-pump">-- <span class="unit">%</span></div>
+                <div class="dash-status" id="stat-pump" style="background-color: #00b4d8;">Hors tension</div>
+            </div>
+            
+            <div class="dash-card">
+                <div class="dash-title">STÉRILISATION UV</div>
+                <div class="toggle-wrapper">
+                    <div class="toggle-switch" id="uv-switch"><div class="toggle-knob"></div></div>
+                </div>
+                <div class="dash-value" id="val-uv" style="display:none;">--</div>
+                <div class="dash-status" id="stat-uv" style="background-color: #00b4d8;">Hors tension</div>
+            </div>
+        </div>
+    </section>
+
+    <section id="simulateur" style="background: white;">
+        <h2>Calculez vos Économies</h2>
+        <div class="card sim-card">
+            <div class="sim-row">
+                <div class="sim-col">
+                    <label>Nombre de personnes dans le foyer : <span id="sim-people-val" style="color: var(--secondary); font-weight: bold; font-size: 1.2rem;">2</span></label>
+                    <input type="range" id="sim-people" class="sim-slider" min="1" max="8" value="2" step="1">
+                </div>
+            </div>
+            <div class="sim-row" style="margin-top: 30px;">
+                <div class="sim-col">
+                    <label>Temps moyen sous la douche : <span id="sim-time-val" style="color: var(--secondary); font-weight: bold; font-size: 1.2rem;">10</span> min</label>
+                    <input type="range" id="sim-time" class="sim-slider" min="3" max="25" value="10" step="1">
+                </div>
+            </div>
+            
+            <div class="sim-divider"></div>
+
+            <p style="text-align: center; font-size: 1.1rem; margin-bottom: 30px; color: #555;">Avec AQUOS, votre foyer économiserait chaque année :</p>
+            
+            <div class="sim-results">
+                <div class="sim-res-box">
+                    <div id="res-liters" class="sim-big-number color-blue">0</div>
+                    <div class="sim-res-label">LITRES D'EAU</div>
+                </div>
+                <div class="sim-res-box">
+                    <div id="res-euros" class="sim-big-number color-green">0</div>
+                    <div class="sim-res-label">EUROS (€)</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="filtration" style="background: var(--light);">
+        <h2><span class="fr">Comment l'eau est-elle purifiée ?</span></h2>
+        <div class="filter-container">
+            <div class="filter-step">
+                <div class="step-circle">1</div>
+                <h3>Filtre Mécanique</h3>
+                <p class="step-desc">Une grille fine qui retient immédiatement les cheveux, grosses particules et résidus de savon.</p>
+            </div>
+            <div class="filter-step">
+                <div class="step-circle">2</div>
+                <h3>Charbon Actif</h3>
+                <p class="step-desc">Une cartouche haute performance qui élimine les mauvaises odeurs et les micro-polluants.</p>
+            </div>
+            <div class="filter-step">
+                <div class="step-circle">3</div>
+                <h3>Lampe UV-C</h3>
+                <p class="step-desc">Stérilisation instantanée : la lumière ultraviolette détruit 99,9 % des bactéries et virus.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="tech">
+        <h2>La Technologie</h2>
+        <div class="grid">
+            <div class="card">
+                <h3 style="color: var(--primary); margin-bottom: 15px;">🧠 Un cœur intelligent</h3>
+                <p>L’<strong>Arduino Uno R3</strong> est la carte principale qui lit les capteurs et pilote les actionneurs matériels en temps réel, tandis que l’<strong>Arduino Nano 33 IoT</strong> gère de manière autonome la liaison Wi-Fi et l'envoi des données.</p>
+            </div>
+            <div class="card">
+                <h3 style="color: var(--primary); margin-bottom: 15px;">👁️ Les Capteurs</h3>
+                <ul style="margin-left: 20px;">
+                    <li><b>Niveau :</b> Vérifie l'eau disponible.</li>
+                    <li><b>Turbidité :</b> Mesure si l'eau est claire.</li>
+                    <li><b>TDS :</b> Mesure la pureté chimique (savon).</li>
+                    <li><b>Température :</b> Assure votre confort.</li>
+                </ul>
+            </div>
+            <div class="card">
+                <h3 style="color: var(--primary); margin-bottom: 15px;">⚙️ Les Actionneurs</h3>
+                <ul style="margin-left: 20px;">
+                    <li><b>Pompe :</b> Renvoie l’eau filtrée.</li>
+                    <li><b>Électrovannes :</b> Dirigent l'eau.</li>
+                    <li><b>Lampe UV-C :</b> Désinfecte l’eau.</li>
+                    <li><b>Résistance :</b> Maintient la chaleur.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section id="pourquoi" style="background: white;">
+        <h2>Pourquoi choisir Aquos ?</h2>
+        <div class="grid" style="text-align: center;">
+            <div><h1>🌱</h1><h3>Écologique</h3><p>Jusqu’à 70 % d’eau économisée à chaque douche.</p></div>
+            <div><h1>💰</h1><h3>Économique</h3><p>Moins d’eau consommée = facture réduite.</p></div>
+            <div><h1>🛁</h1><h3>Confortable</h3><p>Aucune différence… sauf sur la consommation.</p></div>
+            <div><h1>🛡️</h1><h3>Sécurisé</h3><p>Vidange auto si l'eau est sale ou niveau bas.</p></div>
+        </div>
+    </section>
+
+    <section id="comparatif" style="background: var(--light);">
+        <h2>⚖️ AQUOS vs Douche Classique</h2>
+        <div class="card" style="overflow-x: auto; max-width: 950px; margin: auto; padding: 0;">
+            <table class="compare-table">
+                <thead>
+                    <tr>
+                        <th>Caractéristique</th>
+                        <th>Douche Standard</th>
+                        <th class="highlight-col">Cabine AQUOS</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><b>Débit du réseau d'eau</b></td>
+                        <td><span>10 à 12 Litres / min</span></td>
+                        <td class="highlight-col"><b><span>Circuit fermé (100% recyclé)</span></b></td>
+                    </tr>
+                    <tr>
+                        <td><b>Volume total (douche 10 min)</b></td>
+                        <td><span>100 à 120 Litres</span></td>
+                        <td class="highlight-col"><b><span>20 à 30 Litres max</span></b></td>
+                    </tr>
+                    <tr>
+                        <td><b>Besoins thermiques</b></td>
+                        <td><span>Chauffe-eau (100% d'eau froide à chauffer)</span></td>
+                        <td class="highlight-col"><b><span>Résistance d'appoint (maintien à 38°C)</span></b></td>
+                    </tr>
+                    <tr>
+                        <td><b>Filtration & Stérilisation</b></td>
+                        <td><span>Aucune (rejet direct égouts)</span></td>
+                        <td class="highlight-col"><b><span>Filtres mécaniques + Lampe UV-C</span></b></td>
+                    </tr>
+                    <tr>
+                        <td><b>Impact Environnemental</b></td>
+                        <td><span>Élevé 🔴</span></td>
+                        <td class="highlight-col"><b><span>Faible (Éco-conçu) 🟢</span></b></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <section id="architecture" style="background: white;">
+        <h2><i class="fa-solid fa-globe" style="color: #00b4d8;"></i> Architecture Réseau & Parcours de la Donnée</h2>
+        <p style="text-align: center; color: #666; margin-bottom: 50px;">Découvrez comment les mesures physiques de la cabine AQUOS traversent le réseau en temps réel pour alimenter cette interface web.</p>
+        
+        <div class="arch-grid">
+            <div class="arch-card line-blue">
+                <i class="fa-solid fa-plug arch-icon"></i>
+                <h3>1. Collecte Locale</h3>
+                <p>L'<strong>Arduino Uno R3</strong> interroge les capteurs (DS18B20, TDS, Turbidité) via les bus de communication (OneWire, Analogique) et pilote toute la logique matérielle.</p>
+            </div>
+            <div class="arch-card line-lightblue">
+                <i class="fa-solid fa-satellite-dish arch-icon"></i>
+                <h3>2. Émission Wi-Fi</h3>
+                <p>L'<strong>Arduino Nano 33 IoT</strong> récupère les données de l'Uno par liaison série (UART) et les envoie sans fil via des requêtes <strong>MQTT</strong>.</p>
+            </div>
+            <div class="arch-card line-purple">
+                <i class="fa-solid fa-cloud arch-icon"></i>
+                <h3>3. Serveur Cloud</h3>
+                <p>Le serveur <strong>Adafruit IO</strong> reçoit le flux, l'historise et le met à disposition instantanément via son API REST publique.</p>
+            </div>
+            <div class="arch-card line-green">
+                <i class="fa-solid fa-laptop-code arch-icon"></i>
+                <h3>4. Interface Web</h3>
+                <p>Notre script JavaScript exécute un <strong>Fetch asynchrone</strong> toutes les 3s, découpe la chaîne et anime nos jauges CSS.</p>
+            </div>
+        </div>
+
+        <div class="arch-flow-bar">
+            CAPTEURS PHYSIQUES ➔ Arduino Uno R3 ➔ Nano 33 IoT ➔ Internet ➔ Adafruit IO Cloud ➔ <strong>CETTE PAGE WEB (Client REST)</strong>
+        </div>
+    </section>
+
+    <section id="faq" style="background: var(--light);">
+        <h2>Questions Fréquentes</h2>
+        <div style="max-width: 900px; margin: auto;">
+            <div class="faq-item">
+                <button class="faq-question">L'eau recyclée est-elle vraiment hygiénique ? <i class="fa-solid fa-chevron-down"></i></button>
+                <div class="faq-answer"><p>Oui. L'eau subit une filtration mécanique pour les grosses particules, passe par du charbon actif pour les odeurs et micro-polluants, et est instantanément stérilisée par une lampe UV-C détruisant 99.9% des bactéries.</p></div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question">Que se passe-t-il si les filtres sont saturés ? <i class="fa-solid fa-chevron-down"></i></button>
+                <div class="faq-answer"><p>Les capteurs de turbidité et de TDS surveillent la qualité de l'eau en temps réel. Si la qualité baisse en dessous des seuils sanitaires de sécurité, le système AQUOS coupe automatiquement le recyclage et rejette l'eau vers les égouts.</p></div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question">Est-ce que le système demande beaucoup d'entretien ? <i class="fa-solid fa-chevron-down"></i></button>
+                <div class="faq-answer"><p>L'entretien est minime. Il suffit de vider la petite grille de pré-filtre une fois par semaine (comme une douche classique) et de remplacer la cartouche de charbon actif tous les 6 mois.</p></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="equipe" style="background: white;">
+        <h2>L'Équipe</h2>
+        <div class="team-grid">
+            <div class="team-card">
+                <div class="team-name">Prénom 1</div>
+                <div class="team-role">Électronique</div>
+                <div class="team-desc">Conception du cerveau matériel avec l'Arduino Uno R3 et sécurité des circuits de puissance.</div>
+            </div>
+            <div class="team-card">
+                <div class="team-name">Prénom 2</div>
+                <div class="team-role">Filtration</div>
+                <div class="team-desc">Gestion du traitement physico-chimique de l'eau et dimensionnement de l'étage de stérilisation UV-C.</div>
+            </div>
+            <div class="team-card">
+                <div class="team-name">Prénom 3</div>
+                <div class="team-role">Logiciel</div>
+                <div class="team-desc">Programmation des algorithmes de filtrage des capteurs et de l'acquisition des flux IoT.</div>
+            </div>
+            <div class="team-card">
+                <div class="team-name">Prénom 4</div>
+                <div class="team-role">Réseau & Cloud</div>
+                <div class="team-desc">Configuration de la passerelle Nano 33 IoT et routage des trames MQTT vers Adafruit IO.</div>
+            </div>
+            <div class="team-card">
+                <div class="team-name">Prénom 5</div>
+                <div class="team-role">Design & CAO</div>
+                <div class="team-desc">Modélisation 3D de la cabine de douche et intégration mécanique des vannes motorisées.</div>
+            </div>
+            <div class="team-card">
+                <div class="team-name">Prénom 6</div>
+                <div class="team-role">Développement Web</div>
+                <div class="team-desc">Programmation de l'interface asynchrone responsive et de l'espace analytique utilisateur.</div>
+            </div>
+        </div>
+    </section>
+
+    <footer style="background: #333; color: white; text-align: center; padding: 30px; margin-top: 40px;">
+        <h2>Contact</h2>
+        <p>📧 contact.aquos@email.com</p>
+        <div style="margin-top: 20px; display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;">
+            <a href="#" class="btn" style="background:#24292e;"><i class="fa-brands fa-github"></i> GitHub</a>
+            <a href="#" class="btn" style="background:#e1306c;"><i class="fa-brands fa-instagram"></i> Instagram</a>
+        </div>
+    </footer>
+
+</body>
+</html>
