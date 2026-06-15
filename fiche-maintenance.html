@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AQUOS - Fiche d'Intervention Maintenance</title>
+    
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    
+    <style>
+        .datasheet-wrapper { max-width: 900px; margin: 40px auto; background: #ffffff; padding: 50px; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.08); border-top: 8px solid var(--primary); }
+        .ds-header { display: flex; justify-content: space-between; align-items: flex-start; border-bottom: 2px solid #e2e8f0; padding-bottom: 20px; margin-bottom: 30px; }
+        .ds-title h1 { color: var(--primary); font-size: 2rem; margin-bottom: 5px; }
+        .ds-meta { background: #f8fafc; padding: 15px; border-radius: 8px; font-size: 0.95rem; color: #475569; border: 1px solid #e2e8f0; }
+        .ds-meta strong { color: #1e293b; }
+        .error-badge { background: #fee2e2; color: #ef4444; padding: 5px 10px; border-radius: 6px; font-weight: bold; font-family: monospace; font-size: 1.1rem; }
+        .section-title { color: var(--primary); font-size: 1.4rem; margin: 35px 0 15px 0; display: flex; align-items: center; gap: 10px; }
+        .warning-box { background: #fff5f5; border-left: 5px solid #ef4444; padding: 20px; border-radius: 0 8px 8px 0; color: #7f1d1d; margin-bottom: 20px; }
+        .warning-box h4 { color: #dc2626; margin-bottom: 10px; font-size: 1.1rem; }
+        .warning-box ul { margin-left: 20px; }
+        .tools-list { display: flex; flex-wrap: wrap; gap: 15px; list-style: none; }
+        .tools-list li { background: #f1f5f9; padding: 10px 20px; border-radius: 30px; font-weight: 500; color: #334155; font-size: 0.95rem; border: 1px solid #cbd5e1; }
+        .step-card { border: 1px solid #e2e8f0; border-radius: 8px; padding: 25px; margin-bottom: 20px; background: #fafaf9; }
+        .step-card h4 { color: var(--secondary); font-size: 1.2rem; margin-bottom: 15px; border-bottom: 1px dashed #cbd5e1; padding-bottom: 10px; }
+        .symptom-tag { display: inline-block; background: #e0e7ff; color: #0369a1; padding: 4px 12px; border-radius: 20px; font-size: 0.85rem; font-weight: bold; margin-bottom: 15px; }
+        .step-card ol { margin-left: 20px; color: #475569; line-height: 1.7; }
+        .step-card ol li { margin-bottom: 8px; }
+        .action-table { width: 100%; border-collapse: collapse; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
+        .action-table th, .action-table td { padding: 15px; text-align: left; border-bottom: 1px solid #e2e8f0; }
+        .action-table th { background-color: var(--primary); color: white; font-weight: 600; }
+        .action-table tr:last-child td { border-bottom: none; }
+        .checklist { list-style: none; }
+        .checklist li { background: white; border: 1px solid #e2e8f0; padding: 15px 20px; margin-bottom: 10px; border-radius: 8px; display: flex; align-items: center; gap: 15px; color: #334155; font-weight: 500;}
+        .checklist input[type="checkbox"] { width: 20px; height: 20px; cursor: pointer; accent-color: #20c997; }
+
+        @media print {
+            header, .btn-print, footer { display: none !important; }
+            .datasheet-wrapper { box-shadow: none; margin: 0; padding: 0; border: none; }
+            body { padding-top: 0 !important; background: white; }
+        }
+    </style>
+</head>
+<body style="padding-top: 80px;">
+
+    <header>
+        <nav>
+            <a href="espace-utilisateur.html" class="logo-container">
+                <img src="logo.jpg" alt="AQUOS Logo" class="nav-logo">
+                <span class="logo-text">AQUOS</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="espace-utilisateur.html">⬅ Retour au SAV</a></li>
+                <li><button class="btn btn-print" onclick="window.print()" style="background: white; color: var(--primary);"><i class="fa-solid fa-print"></i> Imprimer la fiche</button></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section>
+        <div class="datasheet-wrapper">
+            
+            <div class="ds-header">
+                <div class="ds-title">
+                    <p style="color: #64748b; font-weight: 600; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 5px;">Procédure Opérationnelle Standard (SOP)</p>
+                    <h1>Fiche d'Intervention Maintenance</h1>
+                </div>
+                <div class="error-badge">
+                    <i class="fa-solid fa-triangle-exclamation"></i> ERR-UI-01
+                </div>
+            </div>
+
+            <div class="ds-meta">
+                <p><strong>Système :</strong> Cabine de douche AQUOS (V1.2)</p>
+                <p style="margin: 8px 0;"><strong>Sous-système :</strong> Interface Utilisateur & Connectivité IoT</p>
+                <p><strong>Habilitation requise :</strong> Technicien Spécialité Électronique & Réseau</p>
+            </div>
+
+            <h2 class="section-title"><i class="fa-solid fa-shield-halved"></i> 1. Avertissements de Sécurité</h2>
+            <div class="warning-box">
+                <h4>⚠️ RISQUE ÉLECTRIQUE EN MILIEU HUMIDE</h4>
+                <ul>
+                    <li>L'intervention se déroule en zone humide (Volume 1/2).</li>
+                    <li>S'assurer impérativement que le disjoncteur différentiel principal de la cabine est <strong>COUPÉ</strong> avant de démonter le panneau de contrôle ou le boîtier électronique.</li>
+                    <li>Porter des EPI adaptés (gants isolants).</li>
+                </ul>
+            </div>
+
+            <h2 class="section-title"><i class="fa-solid fa-toolbox"></i> 2. Outillage Requis</h2>
+            <ul class="tools-list">
+                <li><i class="fa-solid fa-bolt"></i> Multimètre numérique</li>
+                <li><i class="fa-solid fa-screwdriver"></i> Tournevis cruciforme isolé</li>
+                <li><i class="fa-solid fa-laptop-code"></i> PC portable avec accès Adafruit IO</li>
+                <li><i class="fa-brands fa-usb"></i> Câbles Data (USB-B & Micro-USB)</li>
+                <li><i class="fa-solid fa-spray-can"></i> Graisse silicone diélectrique</li>
+            </ul>
+
+            <h2 class="section-title"><i class="fa-solid fa-network-wired"></i> 3. Arbre de Diagnostic (Troubleshooting)</h2>
+            
+            <div class="step-card">
+                <h4>ÉTAPE A : Vérification de l'alimentation matérielle</h4>
+                <div class="symptom-tag">Symptôme observé : Le panneau de contrôle physique dans la douche est éteint.</div>
+                <ol>
+                    <li>Ouvrir le boîtier étanche principal situé derrière la colonne.</li>
+                    <li>Vérifier visuellement si les LEDs "ON" de l'<strong>Arduino Uno R3</strong> et du <strong>Nano 33 IoT</strong> sont allumées.</li>
+                    <li>Au multimètre, vérifier la présence de <strong>5V</strong> sur la broche 5V de l'Uno, et <strong>3.3V</strong> sur le Nano.</li>
+                    <li>Si la tension est bonne, contrôler le faisceau I2C / SPI reliant l'Uno à l'écran. Un connecteur oxydé est souvent la cause de la panne.</li>
+                </ol>
+            </div>
+
+            <div class="step-card">
+                <h4>ÉTAPE B : Vérification de la communication série (UART)</h4>
+                <div class="symptom-tag">Symptôme observé : L'écran s'allume mais les données sont à "0" ou figées.</div>
+                <ol>
+                    <li>Vérifier le câblage entre l'Arduino Uno (cerveau) et le Nano 33 IoT (passerelle Wi-Fi).</li>
+                    <li>Rappel : La broche TX de l'Uno doit être reliée au RX du Nano. Les masses (GND) doivent être communes.</li>
+                    <li>Effectuer un test croisé : brancher le PC en USB sur l'Uno, ouvrir le Moniteur Série (9600 baud) et s'assurer que la trame CSV est bien générée.</li>
+                </ol>
+            </div>
+
+            <div class="step-card">
+                <h4>ÉTAPE C : Vérification de la connectivité Réseau & Cloud</h4>
+                <div class="symptom-tag">Symptôme observé : Panneau local OK, mais le Dashboard Web indique "Hors ligne".</div>
+                <ol>
+                    <li>Observer la LED d'état du Nano 33 IoT. Si elle clignote rapidement, la carte ne parvient pas à se connecter au Wi-Fi. (Vérifier un éventuel changement de mot de passe de la box internet du client).</li>
+                    <li>Se connecter au compte technicien sur <strong>Adafruit IO</strong>.</li>
+                    <li>Vérifier si le flux (Feed) est mis à jour. Si oui, le problème provient du cache du navigateur ou du script JavaScript (Fetch).</li>
+                </ol>
+            </div>
+
+            <h2 class="section-title"><i class="fa-solid fa-wrench"></i> 4. Actions Correctives</h2>
+            <table class="action-table">
+                <thead>
+                    <tr>
+                        <th>Problème identifié</th>
+                        <th>Action de maintenance à réaliser</th>
+                        <th style="width: 120px;">Temps</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Câble de l'écran oxydé</strong></td>
+                        <td>Remplacer le faisceau. Appliquer de la graisse silicone sur les connecteurs.</td>
+                        <td>15 min</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Défaut d'alimentation</strong></td>
+                        <td>Remplacer le transformateur AC/DC 5V. Vérifier l'absence de court-circuit.</td>
+                        <td>20 min</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Plantages Nano 33 IoT</strong></td>
+                        <td>Effectuer un Hard-Reset. Si le bug persiste, reflasher le firmware via l'IDE.</td>
+                        <td>10 min</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Perte de réseau Wi-Fi</strong></td>
+                        <td>Reconfigurer le Nano 33 IoT avec les nouveaux identifiants du client.</td>
+                        <td>15 min</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h2 class="section-title"><i class="fa-solid fa-list-check"></i> 5. Validation de fin d'intervention</h2>
+            <ul class="checklist">
+                <li><input type="checkbox"> Le boîtier électronique est refermé de manière parfaitement étanche.</li>
+                <li><input type="checkbox"> Le courant a été réarmé au tableau électrique.</li>
+                <li><input type="checkbox"> Un cycle de test manuel de 2 minutes a été effectué sans erreur à l'écran.</li>
+                <li><input type="checkbox"> Le client a validé que les données remontent bien sur son Espace Web.</li>
+                <li><input type="checkbox"> Le ticket SAV a été clôturé dans la base de données de maintenance.</li>
+            </ul>
+
+        </div>
+    </section>
+
+    <footer style="background: #333; color: white; text-align: center; padding: 20px; margin-top: 40px;">
+        <p>AQUOS © 2026 - Réseau de Maintenance Sécurisé</p>
+    </footer>
+
+</body>
+</html>

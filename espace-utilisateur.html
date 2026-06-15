@@ -23,199 +23,302 @@
                 <li><a href="#rapport"><span class="fr">Rapport Écologique</span><span class="en">Eco Report</span></a></li>
                 <li><a href="#sav"><span class="fr">Assistance SAV</span><span class="en">Support</span></a></li>
                 <li><button class="lang-btn" onclick="toggleLanguage()" id="btn-lang">FR / EN</button></li>
+                <li id="btn-logout" style="display: none;"><a href="#" onclick="deconnexion()" class="btn-user-nav" style="background: #ff4d4d; color: white !important;"><i class="fa-solid fa-power-off"></i> <span class="fr">Déconnexion</span><span class="en">Logout</span></a></li>
             </ul>
         </nav>
     </header>
 
-    <section id="analyse" style="background: var(--light);">
-        <h2>
-            <span class="fr">📊 Analyse du dernier cycle de douche</span>
-            <span class="en">📊 Analysis of the last shower cycle</span>
-        </h2>
-        <p style="text-align: center; margin-bottom: 30px; color: #666;">
-            <span class="fr">Ce graphique retrace l'évolution de la qualité de l'eau lors de votre dernière douche.</span>
-            <span class="en">This graph traces the evolution of water quality during your last shower.</span>
-        </p>
-        <div class="card" style="position: relative; height: 400px; width: 100%; max-width: 900px; margin: auto; padding: 20px;">
-            <canvas id="showerChart"></canvas>
-        </div>
-    </section>
-
-    <section id="rapport" style="background: white;">
-        <h2>
-            <span class="fr">🌱 Votre Rapport Écologique</span>
-            <span class="en">🌱 Your Eco Report</span>
-        </h2>
-        
-        <div id="rapport-login" class="card" style="max-width: 500px; margin: auto; text-align: center; padding: 40px;">
-            <i class="fa-solid fa-leaf" style="font-size: 3rem; color: var(--secondary); margin-bottom: 20px;"></i>
-            <p style="margin-bottom: 20px; color: #555;">
-                <span class="fr">Saisissez l'adresse email associée à votre installation AQUOS pour générer vos statistiques.</span>
-                <span class="en">Enter the email address associated with your AQUOS installation to generate your statistics.</span>
-            </p>
-            <form onsubmit="afficherRapport(event)">
-                <div class="form-group">
-                    <input type="email" id="email-rapport" placeholder="email@exemple.com" required style="text-align: center;">
-                </div>
-                <button type="submit" class="btn" style="width: 100%;">
-                    <span class="fr">Générer mon rapport</span>
-                    <span class="en">Generate my report</span>
-                </button>
-            </form>
-        </div>
-
-        <div id="rapport-content" style="display: none; margin-top: 20px;">
-            <p style="text-align: center; margin-bottom: 30px; font-weight: bold; color: var(--primary); font-size: 1.2rem;" id="rapport-bienvenue"></p>
+    <!-- ÉCRAN DE CONNEXION / INSCRIPTION -->
+    <section id="auth-section" style="background: var(--light); min-height: calc(100vh - 80px); display: flex; align-items: center; justify-content: center;">
+        <div class="card" style="width: 100%; max-width: 450px;">
+            <div style="text-align: center; margin-bottom: 20px;">
+                <i class="fa-solid fa-user-lock" style="font-size: 3rem; color: var(--primary);"></i>
+            </div>
+            <h2 id="auth-title" style="font-size: 1.8rem; margin-bottom: 20px; color: var(--dark);">Connexion</h2>
             
-            <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));">
-                <div class="card">
-                    <h3 style="text-align: center; font-size: 1.1rem; margin-bottom: 15px; color:#555;">
-                        <span class="fr">💧 Votre consommation (Litres)</span>
-                        <span class="en">💧 Your consumption (Liters)</span>
-                    </h3>
-                    <div style="position: relative; height: 250px;"><canvas id="chart-conso"></canvas></div>
-                </div>
-                <div class="card">
-                    <h3 style="text-align: center; font-size: 1.1rem; margin-bottom: 15px; color:#555;">
-                        <span class="fr">⏱️ Temps d'utilisation quotidien (min)</span>
-                        <span class="en">⏱️ Daily usage time (min)</span>
-                    </h3>
-                    <div style="position: relative; height: 250px;"><canvas id="chart-temps"></canvas></div>
-                </div>
-                <div class="card">
-                    <h3 style="text-align: center; font-size: 1.1rem; margin-bottom: 15px; color:#555;">
-                        <span class="fr">🔄 Provenance de l'eau (Ce mois)</span>
-                        <span class="en">🔄 Water source (This month)</span>
-                    </h3>
-                    <div style="position: relative; height: 250px;"><canvas id="chart-provenance"></canvas></div>
-                </div>
-            </div>
+            <div id="auth-message" style="display: none; padding: 12px; margin-bottom: 20px; border-radius: 8px; font-weight: bold; text-align: center; font-size: 0.9rem;"></div>
 
-            <div class="card" style="max-width: 900px; margin: 30px auto; text-align: center;">
-                <h3 style="color: var(--primary); margin-bottom: 20px;">
-                    <span class="fr">🌍 Votre Éco-Score Unique</span>
-                    <span class="en">🌍 Your Unique Eco-Score</span>
-                </h3>
-                <div class="eco-scale-container">
-                    <div class="eco-scale"><div class="eco-marker" id="eco-marker">Vous êtes ici / You are here</div></div>
-                    <div class="eco-labels">
-                        <span><span class="fr">À Améliorer</span><span class="en">Needs Work</span></span>
-                        <span><span class="fr">Dans la moyenne</span><span class="en">Average</span></span>
-                        <span><span class="fr">Éco-Héros 100%</span><span class="en">100% Eco-Hero</span></span>
+            <form id="form-auth" onsubmit="gererAuthentification(event)">
+                <div class="form-group">
+                    <label><span class="fr">Vous êtes :</span><span class="en">You are:</span></label>
+                    <div class="radio-group" style="justify-content: center; margin-bottom: 15px; padding: 10px;">
+                        <label><input type="radio" name="auth-profil" value="utilisateur" checked> <span class="fr">Propriétaire</span><span class="en">Owner</span></label>
+                        <label><input type="radio" name="auth-profil" value="maintenance"> <span class="fr">Technicien</span><span class="en">Technician</span></label>
                     </div>
                 </div>
-                <div style="margin-top: 40px; text-align: left; background: #f8f9fa; padding: 25px; border-left: 5px solid var(--secondary); border-radius: 8px;">
-                    <h4 style="margin-bottom: 15px; color: var(--primary);">
-                        <span class="fr">💡 Nos recommandations personnalisées :</span>
-                        <span class="en">💡 Our personalized recommendations:</span>
-                    </h4>
-                    <ul id="liste-recommandations" style="margin-left: 20px; color: #444; line-height: 1.8;"></ul>
-                </div>
-            </div>
 
-            <div style="text-align: center; margin-top: 30px;">
-                <button onclick="fermerRapport()" class="btn" style="background: #6c757d;">
-                    <span class="fr">Fermer la session</span>
-                    <span class="en">Close session</span>
-                </button>
-            </div>
+                <div class="form-group">
+                    <label><span class="fr">Adresse email :</span><span class="en">Email address:</span></label>
+                    <input type="email" id="auth-email" placeholder="votre@email.com" required>
+                </div>
+                
+                <div class="form-group">
+                    <label><span class="fr">Mot de passe :</span><span class="en">Password:</span></label>
+                    <input type="password" id="auth-password" placeholder="••••••••" required>
+                </div>
+                
+                <p style="text-align: right; margin-top: -10px; margin-bottom: 15px;">
+                    <a href="#" onclick="motDePasseOublie()" style="font-size: 0.85rem; color: var(--primary); text-decoration: none;" id="link-forgot"><span class="fr">Mot de passe oublié ?</span><span class="en">Forgot password?</span></a>
+                </p>
+                
+                <button type="submit" class="btn" id="btn-auth-submit" style="width: 100%; font-size: 1.1rem; padding: 15px;">Se connecter</button>
+            </form>
+            
+            <p style="text-align: center; margin-top: 25px; font-size: 0.95rem;">
+                <span id="auth-switch-text">Pas encore de compte ?</span> 
+                <a href="#" onclick="basculerModeAuth()" style="color: var(--primary); font-weight: bold; text-decoration: underline;" id="auth-switch-link">Créer un compte</a>
+            </p>
         </div>
     </section>
 
-    <section id="sav" style="background: var(--light);">
-        <h2>
-            <span class="fr">🛠️ Service Après-Vente</span>
-            <span class="en">🛠️ After-Sales Support</span>
-        </h2>
-        <p style="text-align: center; margin-bottom: 40px; color: #666;">
-            <span class="fr">Signalez un problème ou accédez aux fiches d'intervention AQUOS.</span>
-            <span class="en">Report a problem or access AQUOS intervention files.</span>
-        </p>
+    <!-- CONTENU PRINCIPAL DE L'ESPACE CLIENT -->
+    <div id="app-content" style="display: none;">
 
-        <div id="sav-wrapper" class="card" style="max-width: 700px; margin: auto; padding: 40px;">
-            <form id="form-sav">
-                <div class="form-group">
-                    <label>
-                        <span class="fr">Vous êtes :</span>
-                        <span class="en">You are:</span>
-                    </label>
-                    <div class="radio-group" style="background: #f1f3f5; padding: 15px; border-radius: 8px;">
-                        <label>
-                            <input type="radio" name="profil" value="utilisateur" checked required onchange="basculerProfilSAV()"> 
-                            <span class="fr">Propriétaire AQUOS</span><span class="en">AQUOS Owner</span>
-                        </label>
-                        <label>
-                            <input type="radio" name="profil" value="maintenance" onchange="basculerProfilSAV()"> 
-                            <span class="fr">Équipe Maintenance</span><span class="en">Maintenance Team</span>
-                        </label>
+        <section id="analyse" style="background: var(--light);">
+            <h2>
+                <span class="fr">Analyse du dernier cycle de douche</span>
+                <span class="en">Analysis of the last shower cycle</span>
+            </h2>
+            <p style="text-align: center; margin-bottom: 30px; color: #666;">
+                <span class="fr">Ce graphique retrace l'évolution de la qualité de l'eau lors de votre dernière douche.</span>
+                <span class="en">This graph traces the evolution of water quality during your last shower.</span>
+            </p>
+            <div class="card" style="position: relative; height: 400px; width: 100%; max-width: 900px; margin: auto; padding: 20px;">
+                <canvas id="showerChart"></canvas>
+            </div>
+        </section>
+
+        <section id="rapport" style="background: white;">
+            <h2>
+                <span class="fr">Votre Rapport Écologique</span>
+                <span class="en">Your Eco Report</span>
+            </h2>
+            
+            <div id="rapport-login" class="card" style="max-width: 500px; margin: auto; text-align: center; padding: 40px;">
+                <i class="fa-solid fa-leaf" style="font-size: 3rem; color: var(--secondary); margin-bottom: 20px;"></i>
+                <p style="margin-bottom: 20px; color: #555;">
+                    <span class="fr">Générez vos statistiques à partir de votre compte.</span>
+                    <span class="en">Generate your statistics from your account.</span>
+                </p>
+                <form onsubmit="afficherRapport(event)">
+                    <div class="form-group">
+                        <input type="email" id="email-rapport" readonly style="text-align: center; background: #e9ecef; cursor: not-allowed;">
+                    </div>
+                    <button type="submit" class="btn" style="width: 100%;">
+                        <span class="fr">Générer mon rapport</span>
+                        <span class="en">Generate my report</span>
+                    </button>
+                </form>
+            </div>
+
+            <div id="rapport-content" style="display: none; margin-top: 20px;">
+                <p style="text-align: center; margin-bottom: 30px; font-weight: bold; color: var(--primary); font-size: 1.2rem;" id="rapport-bienvenue"></p>
+                
+                <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));">
+                    <div class="card">
+                        <h3 style="text-align: center; font-size: 1.1rem; margin-bottom: 15px; color:#555;">
+                            <span class="fr">Votre consommation (Litres)</span>
+                            <span class="en">Your consumption (Liters)</span>
+                        </h3>
+                        <div style="position: relative; height: 250px;"><canvas id="chart-conso"></canvas></div>
+                    </div>
+                    <div class="card">
+                        <h3 style="text-align: center; font-size: 1.1rem; margin-bottom: 15px; color:#555;">
+                            <span class="fr">Temps d'utilisation quotidien (min)</span>
+                            <span class="en">Daily usage time (min)</span>
+                        </h3>
+                        <div style="position: relative; height: 250px;"><canvas id="chart-temps"></canvas></div>
+                    </div>
+                    <div class="card">
+                        <h3 style="text-align: center; font-size: 1.1rem; margin-bottom: 15px; color:#555;">
+                            <span class="fr">Provenance de l'eau (Ce mois)</span>
+                            <span class="en">Water source (This month)</span>
+                        </h3>
+                        <div style="position: relative; height: 250px;"><canvas id="chart-provenance"></canvas></div>
                     </div>
                 </div>
 
-                <div class="form-group">
-                    <label for="email-sav">
-                        <span class="fr">Votre adresse email :</span>
-                        <span class="en">Your email address:</span>
-                    </label>
-                    <input type="email" id="email-sav" name="email" placeholder="contact@email.com" required>
+                <div class="card" style="max-width: 900px; margin: 30px auto; text-align: center;">
+                    <h3 style="color: var(--primary); margin-bottom: 20px;">
+                        <span class="fr">Votre Éco-Score Unique</span>
+                        <span class="en">Your Unique Eco-Score</span>
+                    </h3>
+                    <div class="eco-scale-container">
+                        <div class="eco-scale"><div class="eco-marker" id="eco-marker">Vous êtes ici / You are here</div></div>
+                        <div class="eco-labels">
+                            <span><span class="fr">À Améliorer</span><span class="en">Needs Work</span></span>
+                            <span><span class="fr">Dans la moyenne</span><span class="en">Average</span></span>
+                            <span><span class="fr">Éco-Héros 100%</span><span class="en">100% Eco-Hero</span></span>
+                        </div>
+                    </div>
+                    <div style="margin-top: 40px; text-align: left; background: #f8f9fa; padding: 25px; border-left: 5px solid var(--secondary); border-radius: 8px;">
+                        <h4 style="margin-bottom: 15px; color: var(--primary);">
+                            <span class="fr">Nos recommandations personnalisées :</span>
+                            <span class="en">Our personalized recommendations:</span>
+                        </h4>
+                        <ul id="liste-recommandations" style="margin-left: 20px; color: #444; line-height: 1.8;"></ul>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label for="tel-sav">
-                        <span class="fr">Votre numéro de téléphone :</span>
-                        <span class="en">Your phone number:</span>
-                    </label>
-                    <input type="tel" id="tel-sav" name="telephone" placeholder="+33 6 12 34 56 78" required>
-                </div>
+            </div>
+        </section>
 
-                <div id="bloc-utilisateur-panne">
+        <section id="comparatif" style="background: var(--light);">
+            <h2><span class="fr">AQUOS vs Douche Classique</span><span class="en">AQUOS vs Classic Shower</span></h2>
+            <div class="card" style="overflow-x: auto; max-width: 950px; margin: auto; padding: 0;">
+                <table class="compare-table">
+                    <thead>
+                        <tr>
+                            <th><span class="fr">Caractéristique</span><span class="en">Feature</span></th>
+                            <th><span class="fr">Douche Standard</span><span class="en">Standard Shower</span></th>
+                            <th class="highlight-col">Cabine AQUOS</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><b><span class="fr">Débit au pommeau</span><span class="en">Showerhead flow</span></b></td>
+                            <td><span>10 à 12 Litres / min</span></td>
+                            <td class="highlight-col"><b><span><span class="fr">10 à 12 Litres / min (Confort identique)</span><span class="en">10 to 12 Liters / min (Identical comfort)</span></span></b></td>
+                        </tr>
+                        <tr>
+                            <td><b><span class="fr">Volume total (douche 10 min)</span><span class="en">Total volume (10 min shower)</span></b></td>
+                            <td><span>100 à 120 Litres</span></td>
+                            <td class="highlight-col"><b><span><span class="fr">Boucle fermée continue</span><span class="en">Continuous closed loop</span></span></b></td>
+                        </tr>
+                        <tr>
+                            <td><b><span class="fr">Besoins thermiques</span><span class="en">Heating needs</span></b></td>
+                            <td><span><span class="fr">Chauffe-eau (100% d'eau froide à chauffer)</span><span class="en">Water heater (heating 100% cold water)</span></span></td>
+                            <td class="highlight-col"><b><span><span class="fr">Résistance d'appoint (maintien à 38°C)</span><span class="en">Backup heater (maintains 38°C)</span></span></b></td>
+                        </tr>
+                        <tr>
+                            <td><b><span class="fr">Filtration & Stérilisation</span><span class="en">Filtration & Sterilization</span></b></td>
+                            <td><span><span class="fr">Aucune (rejet direct égouts)</span><span class="en">None (direct drain discharge)</span></span></td>
+                            <td class="highlight-col"><b><span><span class="fr">Filtres mécaniques + Lampe UV-C</span><span class="en">Mechanical filters + UV-C Lamp</span></span></b></td>
+                        </tr>
+                        <tr>
+                            <td><b><span class="fr">Impact Environnemental</span><span class="en">Environmental Impact</span></b></td>
+                            <td><span><span class="fr">Élevé</span><span class="en">High</span></span></td>
+                            <td class="highlight-col"><b><span><span class="fr">Très faible (Économie jusqu'à 90%)</span><span class="en">Very low (Up to 90% savings)</span></span></b></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section id="sav" style="background: var(--light);">
+            <h2>
+                <span class="fr">Service Après-Vente</span>
+                <span class="en">After-Sales Support</span>
+            </h2>
+            <p style="text-align: center; margin-bottom: 40px; color: #666;">
+                <span class="fr">Signalez un problème ou accédez aux fiches d'intervention AQUOS.</span>
+                <span class="en">Report a problem or access AQUOS intervention files.</span>
+            </p>
+
+            <div id="sav-wrapper" class="card" style="max-width: 700px; margin: auto; padding: 40px;">
+                <form id="form-sav">
+                    <div class="form-group" style="display: none;">
+                        <div class="radio-group">
+                            <label><input type="radio" name="profil" value="utilisateur" checked required onchange="basculerProfilSAV()"> Propriétaire</label>
+                            <label><input type="radio" name="profil" value="maintenance" onchange="basculerProfilSAV()"> Maintenance</label>
+                        </div>
+                    </div>
+
                     <div class="form-group">
-                        <label for="adresse-sav">
-                            <span class="fr">Adresse de l'installation :</span>
-                            <span class="en">Installation address:</span>
+                        <label for="email-sav">
+                            <span class="fr">Votre adresse email :</span>
+                            <span class="en">Your email address:</span>
                         </label>
-                        <input type="text" id="adresse-sav" name="adresse" placeholder="12 rue de la Paix, Paris">
+                        <input type="email" id="email-sav" name="email" readonly style="background: #e9ecef; cursor: not-allowed;" required>
                     </div>
                     <div class="form-group">
-                        <label for="panne-raison">
-                            <span class="fr">Nature du problème :</span>
-                            <span class="en">Nature of the problem:</span>
+                        <label for="tel-sav">
+                            <span class="fr">Votre numéro de téléphone :</span>
+                            <span class="en">Your phone number:</span>
                         </label>
-                        <select id="panne-raison" name="panne-raison">
-                            <option value="" disabled selected>-- Sélectionnez / Select --</option>
-                            <option value="fuite">Fuite d'eau / Water leak</option>
-                            <option value="eau_froide">L'eau ne chauffe plus / Water not heating</option>
-                            <option value="pas_debit">Absence de débit / No water flow</option>
-                            <option value="ecran_eteint">L'écran est éteint / Screen is off</option>
-                            <option value="odeur">Mauvaise odeur / Bad smell</option>
+                        <input type="tel" id="tel-sav" name="telephone" placeholder="Ex: +33 6 12 34 56 78" required>
+                    </div>
+
+                    <div id="bloc-utilisateur-panne">
+                        <div class="form-group">
+                            <label for="adresse-sav">
+                                <span class="fr">Adresse de l'installation :</span>
+                                <span class="en">Installation address:</span>
+                            </label>
+                            <input type="text" id="adresse-sav" name="adresse" placeholder="12 rue de la Paix, Paris">
+                        </div>
+                        <div class="form-group">
+                            <label for="panne-raison">
+                                <span class="fr">Nature du problème :</span>
+                                <span class="en">Nature of the problem:</span>
+                            </label>
+                            <select id="panne-raison" name="panne-raison">
+                                <option value="" disabled selected data-fr="-- Sélectionnez --" data-en="-- Select --">-- Sélectionnez --</option>
+                                <option value="fuite" data-fr="Fuite d'eau" data-en="Water leak">Fuite d'eau</option>
+                                <option value="eau_froide" data-fr="L'eau ne chauffe plus" data-en="Water not heating">L'eau ne chauffe plus</option>
+                                <option value="pas_debit" data-fr="Absence de débit" data-en="No water flow">Absence de débit</option>
+                                <option value="ecran_eteint" data-fr="L'écran est éteint" data-en="Screen is off">L'écran est éteint</option>
+                                <option value="odeur" data-fr="Mauvaise odeur" data-en="Bad smell">Mauvaise odeur</option>
+                                <option value="autre" data-fr="Autre" data-en="Other">Autre</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group" id="bloc-precision-autre" style="display: none;">
+                            <label for="precision-autre">
+                                <span class="fr">Précisez votre problème :</span>
+                                <span class="en">Specify your problem:</span>
+                            </label>
+                            <input type="text" id="precision-autre" name="precision-autre" placeholder="...">
+                        </div>
+                    </div>
+
+                    <div class="form-group" id="bloc-maintenance-activite" style="display: none;">
+                        <label for="maintenance-activite">
+                            <span class="fr">Votre secteur d'intervention :</span>
+                            <span class="en">Your intervention sector:</span>
+                        </label>
+                        <select id="maintenance-activite" name="maintenance-activite">
+                            <option value="" disabled selected data-fr="-- Spécialité --" data-en="-- Specialty --">-- Spécialité --</option>
+                            <option value="plomberie" data-fr="Plomberie" data-en="Plumbing">Plomberie</option>
+                            <option value="filtration" data-fr="Filtration & UV-C" data-en="Filtration & UV-C">Filtration & UV-C</option>
+                            <option value="electronique" data-fr="Électronique" data-en="Electronics">Électronique</option>
+                            <option value="pompes" data-fr="Pompes" data-en="Pumps">Pompes</option>
                         </select>
                     </div>
-                </div>
 
-                <div class="form-group" id="bloc-maintenance-activite" style="display: none;">
-                    <label for="maintenance-activite">
-                        <span class="fr">Votre secteur d'intervention :</span>
-                        <span class="en">Your intervention sector:</span>
-                    </label>
-                    <select id="maintenance-activite" name="maintenance-activite">
-                        <option value="" disabled selected>-- Spécialité / Specialty --</option>
-                        <option value="plomberie">Plomberie / Plumbing</option>
-                        <option value="filtration">Filtration & UV-C</option>
-                        <option value="electronique">Électronique / Electronics</option>
-                        <option value="pompes">Pompes / Pumps</option>
-                    </select>
-                </div>
+                    <div id="bloc-lien-maintenance" style="display: none; background: #e0f2fe; padding: 15px; border-radius: 8px; border-left: 4px solid #0ea5e9; margin-top: 15px; text-align: left;">
+                        <p style="color: #0369a1; font-weight: bold; margin-bottom: 5px;">
+                            <i class="fa-solid fa-file-contract"></i> 
+                            <span class="fr">Document technique disponible</span>
+                            <span class="en">Technical document available</span>
+                        </p>
+                        <a href="fiche-maintenance.html" target="_blank" style="color: #0077b6; text-decoration: underline; font-size: 0.95rem;">
+                            <span class="fr">Consulter la fiche de diagnostic (ERR-UI-01)</span>
+                            <span class="en">View the diagnostic sheet (ERR-UI-01)</span>
+                        </a>
+                    </div>
 
-                <button type="submit" class="btn" style="width: 100%; margin-top: 20px; font-size: 1.1rem; padding: 15px;">
-                    <span class="fr">Soumettre la demande</span>
-                    <span class="en">Submit request</span>
-                </button>
-            </form>
+                    <button type="submit" class="btn" style="width: 100%; margin-top: 20px; font-size: 1.1rem; padding: 15px;">
+                        <span class="fr">Soumettre la demande</span>
+                        <span class="en">Submit request</span>
+                    </button>
+                </form>
 
-            <div id="sav-success-screen" style="display: none; text-align: center;"></div>
+                <div id="sav-success-screen" style="display: none; text-align: center;"></div>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- FOOTER AVEC RESEAUX SOCIAUX ET MAIL -->
+    <footer style="background: #333; color: white; text-align: center; padding: 30px; margin-top: 40px;">
+        <div style="margin-bottom: 15px;">
+            <a href="https://www.instagram.com/aquosesiee/" target="_blank" style="color: white; font-size: 1.8rem; margin: 0 15px; text-decoration: none; transition: color 0.3s;" onmouseover="this.style.color='var(--secondary)'" onmouseout="this.style.color='white'"><i class="fa-brands fa-instagram"></i></a>
+            <a href="mailto:aquosesiee@gmail.com" style="color: white; font-size: 1.8rem; margin: 0 15px; text-decoration: none; transition: color 0.3s;" onmouseover="this.style.color='var(--secondary)'" onmouseout="this.style.color='white'"><i class="fa-solid fa-envelope"></i></a>
         </div>
-    </section>
-
-    <footer style="background: #333; color: white; text-align: center; padding: 20px; margin-top: 40px;">
-        <p>AQUOS © 2026 - <span class="fr">Espace Client Sécurisé</span><span class="en">Secure Client Area</span></p>
+        <p style="margin-bottom: 5px; font-size: 0.95rem;">
+            <span class="fr">Contact :</span><span class="en">Contact:</span> <a href="mailto:aquosesiee@gmail.com" style="color: var(--secondary); text-decoration: none;">aquosesiee@gmail.com</a>
+        </p>
+        <p style="font-size: 0.85rem; color: #aaa;">AQUOS © 2026 - <span class="fr">Tous droits réservés.</span><span class="en">All rights reserved.</span></p>
     </footer>
 
 </body>
